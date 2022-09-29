@@ -1,0 +1,46 @@
+parser: "@typescript-eslint/parser"
+parserOptions:
+  ecmaVersion: 13
+  sourceType: module
+  ecmaFeatures: { jsx: true }
+
+env:
+  browser: true
+  es6: true
+  jest: true
+
+settings:
+  react:
+    version: detect
+
+extends:
+  - "eslint:recommended"
+  - "plugin:react/recommended"
+  - "plugin:react-hooks/recommended"
+  - "plugin:@typescript-eslint/recommended"
+  # Make sure this is always the last configuration in the extends array,
+  - "plugin:prettier/recommended"
+
+ignorePatterns:
+  - "*/dist"
+  - "*/build"
+  - "*/node_modules"
+  - "webpack.*"
+  - "*.html"
+
+plugins:
+  - "@typescript-eslint"
+  - "prettier"
+
+rules:
+  "prettier/prettier": warn
+  "react/jsx-uses-react": off
+  "react/react-in-jsx-scope": off
+  "no-unused-vars": off
+  "@typescript-eslint/no-unused-vars": [warn, { argsIgnorePattern: "^_" }]
+  "@typescript-eslint/no-explicit-any": error
+  "react-hooks/exhaustive-deps": error
+
+overrides: []
+
+globals: {}

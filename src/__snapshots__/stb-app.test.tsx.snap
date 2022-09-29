@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StbApp /> renders correctly 1`] = `
+<div
+  className="stb-app"
+>
+  <img
+    className="stb-app__image"
+    src=""
+  />
+  <div
+    className="stb-app__text la-navigable"
+    data-down="la-suggestions"
+    id="center-elem"
+  >
+    Edit 
+    <code>
+      src/stb-app.tsx
+    </code>
+    .
+  </div>
+</div>
+`;

@@ -1,9 +1,9 @@
-import { loadEnv } from 'vite';
+import { loadEnv } from "vite";
 
-import react from '@vitejs/plugin-react';
-import { createHtmlPlugin as html } from 'vite-plugin-html';
-import svgr from 'vite-plugin-svgr';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import react from "@vitejs/plugin-react";
+import { createHtmlPlugin as html } from "vite-plugin-html";
+import svgr from "vite-plugin-svgr";
+import tsconfigPaths from "vite-tsconfig-paths";
 
 /**
  * @see https://vitejs.dev/config/
@@ -21,7 +21,7 @@ function defineConfig({ mode }) {
       port: 3000,
     },
     build: {
-      outDir: 'build',
+      outDir: "build",
     },
     plugins: [
       react(),
@@ -34,6 +34,7 @@ function defineConfig({ mode }) {
       }),
       tsconfigPaths(),
     ],
+    base: "./",
   };
 }
 

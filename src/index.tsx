@@ -18,6 +18,10 @@ window.laSdk
         <App />
       </React.StrictMode>,
     );
+
+    window.addEventListener('laclose', () => {
+      root.unmount();
+    });
   })
   .catch((err) => {
     console.error('window.laSdk.ready(): ' + err);

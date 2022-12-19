@@ -14,11 +14,11 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint src/",
-    "prettier:check": "prettier --check '**/*.{js,ts,tsx,json,md}'",
-    "prettier:write": "prettier --write '**/*.{js,ts,tsx,json,md}'",
+    "prettier-check": "prettier --check '**/*.{js,ts,tsx,json,md}'",
+    "prettier-write": "prettier --write '**/*.{js,ts,tsx,json,md}'",
     "test": "jest --verbose --collectCoverage=false",
     "test:coverage": "jest --collectCoverage",
-    "blue-ball": "npm run lint && npm run prettier:check && npm run test && npm run build && npm pack --dry-run"
+    "blue-ball": "npm run lint && npm run prettier-check && npm run test && npm run build && npm pack --dry-run"
   },
   "devDependencies": {
     "@telefonica/living-apps-core-web-types": "^0.2.1",

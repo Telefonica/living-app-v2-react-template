@@ -8,11 +8,7 @@
     /* language */
     "target": "ES2016",
     "jsx": "react-jsx",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     /* js support */
     "allowJs": false,
     /* Interop Constraints */
@@ -24,9 +20,7 @@
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     /* emit */
-    "noEmit": true,
+    "noEmit": true
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

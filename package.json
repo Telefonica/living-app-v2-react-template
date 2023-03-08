@@ -21,7 +21,7 @@
     "blue-ball": "npm run lint && npm run prettier:check && npm run test && npm run build && npm pack --dry-run"
   },
   "devDependencies": {
-    "@telefonica/living-apps-core-web-types": "latest",
+    "@telefonica/living-apps-core-web-types": "^0.11.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.0.3",
@@ -41,7 +41,6 @@
     "jest-transform-stub": "^2.0.0",
     "jest": "^29.0.3",
     "prettier": "^2.7.1",
-    "react-test-renderer": "^18.2.0",
     "ts-jest": "^29.0.2",
     "typescript": "^4.6.4",
     "vite-plugin-html": "^3.2.0",
@@ -50,6 +49,7 @@
     "vite": "^3.1.0"
   },
   "dependencies": {
+    "@telefonica/living-apps-core-react": "^0.37.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

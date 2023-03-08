@@ -1,7 +1,9 @@
-import renderer from 'react-test-renderer';
+import { render } from '@testing-library/react';
 import MhApp from './mh-app';
 
-test('<MhApp /> renders correctly', () => {
-  const render = renderer.create(<MhApp />).toJSON();
-  expect(render).toMatchSnapshot();
+describe('<MhApp />', () => {
+  test('render: match snapshot', () => {
+    const { asFragment } = render(<MhApp />);
+    expect(asFragment()).toMatchSnapshot();
+  });
 });

@@ -18,6 +18,8 @@ extends:
   - "plugin:react/recommended"
   - "plugin:react-hooks/recommended"
   - "plugin:@typescript-eslint/recommended"
+  - "plugin:jest/recommended"
+  - "plugin:jest/style"
   # Make sure this is always the last configuration in the extends array,
   - "plugin:prettier/recommended"
 
@@ -31,6 +33,7 @@ ignorePatterns:
 plugins:
   - "@typescript-eslint"
   - "prettier"
+  - "jest"
 
 rules:
   "prettier/prettier": warn
@@ -40,6 +43,12 @@ rules:
   "@typescript-eslint/no-unused-vars": [warn, { argsIgnorePattern: "^_" }]
   "@typescript-eslint/no-explicit-any": error
   "react-hooks/exhaustive-deps": error
+  "react/jsx-boolean-value": error
+  "@typescript-eslint/consistent-type-imports": warn
+  "react/self-closing-comp": error
+  "eqeqeq": error
+  "react/jsx-curly-brace-presence": [ error, { props: 'never', children: 'never' } ]
+  "jest/consistent-test-it": [ "error", { fn: "test", withinDescribe: "it" } ]
 
 overrides: []
 

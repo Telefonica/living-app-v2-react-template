@@ -17,7 +17,7 @@ describe('<StbApp />', () => {
     };
   });
 
-  test('render: match snapshot', () => {
+  it('render: match snapshot', () => {
     const { asFragment } = render(<StbApp />);
     expect(asFragment()).toMatchSnapshot();
   });

@@ -4,7 +4,6 @@
   "author": "livingappscoredevelopers@telefonica.com",
   "repository": "https://github.com/Telefonica/living-app-v2-react-template",
   "private": true,
-  "version": "0.1.0",
   "type": "module",
   "engines": {
     "yarn": "use npm!"
@@ -22,7 +21,8 @@
     "blue-ball": "npm run lint && npm run prettier:check && npm run test && npm run build && npm pack --dry-run"
   },
   "devDependencies": {
-    "@telefonica/living-apps-core-web-types": "^0.11.0",
+    "@telefonica/living-apps-core-react": "latest",
+    "@telefonica/living-apps-core-web-types": "latest",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/jest": "^29.0.3",
@@ -48,10 +48,7 @@
     "vite-plugin-html": "^3.2.0",
     "vite-plugin-svgr": "^2.2.1",
     "vite-tsconfig-paths": "^3.5.1",
-    "vite": "^3.1.0"
-  },
-  "dependencies": {
-    "@telefonica/living-apps-core-react": "^0.37.0",
+    "vite": "^3.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   }

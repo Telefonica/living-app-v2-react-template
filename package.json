@@ -14,8 +14,8 @@
     "preview": "vite preview",
     "lint": "eslint src/",
     "lint:fix": "eslint --fix src/",
-    "prettier:check": "prettier --check '**/*.{js,ts,tsx,json,md}'",
-    "prettier:write": "prettier --write '**/*.{js,ts,tsx,json,md}'",
+    "prettier:check": "prettier --check '**/*.{js,ts,tsx,json,md,css,sass,scss}'",
+    "prettier:write": "prettier --write '**/*.{js,ts,tsx,json,md,css,sass,scss}'",
     "test": "jest --verbose --collectCoverage=false",
     "test:coverage": "jest --collectCoverage",
     "blue-ball": "npm run lint && npm run prettier:check && npm run test && npm run build && npm pack --dry-run"

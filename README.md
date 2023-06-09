@@ -18,3 +18,8 @@ This template project was forked from [living-app-v2-react-template](https://git
 - [**SDK DOCS**](https://la-docs.apps.ocp-epg.tid.es/docs/intro/)
 - [**REACT COMPONENT LIBRARY**](https://la-react.apps.ocp-epg.tid.es)
 - [Dev Stack](./docs/dev-stack.md)
+
+
+## Licensing 📝 
+
+- [LICENSE](./LICENSE)

@@ -2,6 +2,7 @@
   "name": "living-app-v2-react-template",
   "description": "Getting started with Living Apps 2.0: React project template",
   "author": "livingappscoredevelopers@telefonica.com",
+  "license" : "SEE LICENSE IN LICENSE",
   "repository": "https://github.com/Telefonica/living-app-v2-react-template",
   "private": true,
   "type": "module",

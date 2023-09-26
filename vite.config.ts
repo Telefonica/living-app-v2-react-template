@@ -21,7 +21,6 @@ function defineConfig({ mode }) {
   return {
     server: {
       port: 3000,
-      open: `?mock=true`,
     },
     build: {
       outDir: 'build',

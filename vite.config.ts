@@ -1,7 +1,7 @@
 import { loadEnv } from 'vite';
 
 /* Plugins */
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 import { createHtmlPlugin as html } from 'vite-plugin-html';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -21,6 +21,7 @@ function defineConfig({ mode }) {
   return {
     server: {
       port: 3000,
+      open: `?mock=true`,
     },
     build: {
       outDir: 'build',

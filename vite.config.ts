@@ -1,9 +1,11 @@
 import { loadEnv } from 'vite';
 
+/* Plugins */
 import react from '@vitejs/plugin-react';
 import { createHtmlPlugin as html } from 'vite-plugin-html';
 import svgr from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
+import legacy from '@vitejs/plugin-legacy';
 
 /**
  * @see https://vitejs.dev/config/
@@ -33,6 +35,12 @@ function defineConfig({ mode }) {
         },
       }),
       tsconfigPaths(),
+      // Plugin to maintain compatibility with browsers < Safari v14
+      legacy({
+        // For add polyfills, see https://github.com/vitejs/vite/tree/main/packages/plugin-legacy#polyfill-specifiers
+        // polyfills: ['es.array.flat', 'es.array.flat-map'],
+        targets: ['safari 10'],
+      }),
     ],
     base: './',
   };

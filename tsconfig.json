@@ -10,7 +10,7 @@
     "jsx": "react-jsx",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     /* js support */
-    "allowJs": false,
+    "allowJs": true,
     /* Interop Constraints */
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -19,6 +19,7 @@
     /* type checking */
     "strict": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
     /* emit */
     "noEmit": true
   },

@@ -1,0 +1,10 @@
+name: release
+on:
+  push:
+    branches: [master]
+
+  workflow_dispatch: {}
+
+jobs:
+  la-release:
+    uses: telefonica/living-apps-gh-actions/.github/workflows/release.yaml@master

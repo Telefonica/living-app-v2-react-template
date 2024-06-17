@@ -1,3 +1,0 @@
-@Library(['livingapps', 'devops']) _
-standardPipeline { }
- 

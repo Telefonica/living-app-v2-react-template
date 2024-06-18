@@ -1,0 +1,6 @@
+name: pull request
+on: [pull_request]
+
+jobs:
+  la-pr:
+    uses: telefonica/living-apps-gh-actions/.github/workflows/pull-request.yaml@master

@@ -7,7 +7,6 @@
   justify-content: center;
 }
 
-
 .stb-app__image {
   display: block;
   width: 600px;
@@ -15,9 +14,7 @@
 }
 
 .stb-app__text:focus {
-
   border-color: rgba(0, 102, 255, 0.5);
-
 }
 
 .stb-app__text {

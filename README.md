@@ -21,7 +21,6 @@ This template project was forked from [living-app-v2-react-template](https://git
 - [**REACT COMPONENT LIBRARY**](https://la-react.apps.ocp-epg.tid.es)
 - [Dev Stack](./docs/dev-stack.md)
 
-
 ## Licensing 📝 
 
 - [LICENSE](./LICENSE)

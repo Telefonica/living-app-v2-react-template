@@ -1,5 +1,5 @@
-function MhApp(): JSX.Element {
-  return <div />;
-}
+import type { JSX } from 'react';
 
-export default MhApp;
+export const MhApp = (): JSX.Element => {
+  return <div />;
+};

@@ -1,22 +1,25 @@
-import image from 'assets/image.png';
 import { useEffect } from 'react';
+
+import image from 'assets/image.png';
+
+import type { JSX } from 'react';
 
 import './stb-app.css';
 
-function StbApp(): JSX.Element {
+export const StbApp = (): JSX.Element => {
   useEffect(() => {
     laSdk.createSuggestions([
       {
         text: 'Check Docs',
         up: 'center-elem',
-        onClick() {
+        onClick: () => {
           window.open('https://la-docs.apps.ocp-epg.tid.es/docs/intro/', '_blanck');
         },
       },
       {
         text: 'Show Toast',
         up: 'center-elem',
-        onClick() {
+        onClick: () => {
           laSdk.createToast({ type: 'success', text: 'Hello there!' });
         },
       },
@@ -31,6 +34,4 @@ function StbApp(): JSX.Element {
       </div>
     </div>
   );
-}
-
-export default StbApp;
+};

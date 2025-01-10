@@ -1,5 +1,6 @@
 import { render } from '@testing-library/react';
-import StbApp from './stb-app';
+
+import { StbApp } from './stb-app';
 
 describe('<StbApp />', () => {
   beforeEach(() => {

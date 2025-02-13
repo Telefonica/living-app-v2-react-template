@@ -1,0 +1,42 @@
+name: QA Pr sanity
+
+on: 
+  pull_request:
+    paths: 
+      - 'tests/acceptance/**'
+      - 'docker-compose.qa.yaml'
+      - 'docker-compose.laqacommons.yaml'
+      - '.github/workflows/qa-*.yaml'
+
+concurrency:
+    group: '${{ github.workflow }} @ ${{ github.event.pull_request.head.label || github.head_ref || github.ref }}'
+    cancel-in-progress: true
+
+jobs:
+  get_pr_issue:
+    runs-on: cdorunner-la-qa-platform
+    outputs:
+      issue: ${{ steps.get_issue.outputs.jira_id }}
+    steps:
+      - name: Get PR issue
+        continue-on-error: true
+        id: get_issue
+        uses: Telefonica/qacdco-github-actions/utilities/jira/get-jira-id@main
+
+  pr-sanity:
+    name: Sanity ${{ needs.get_pr_issue.outputs.issue }}
+    needs: [get_pr_issue]
+    uses: ./.github/workflows/qa-acceptance-tests.yaml
+    with:
+      priority: sanity
+      jira-issue: ${{ needs.get_pr_issue.outputs.issue }}
+    secrets: inherit
+
+  feature-checks:
+    name: Feature checks
+    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-pull-request-checks.yaml@master
+    with:
+      la-runner: cdorunner-la-qa-platform
+    secrets: inherit
+
+

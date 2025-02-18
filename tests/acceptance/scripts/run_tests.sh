@@ -14,7 +14,7 @@ JIRA_ISSUE=${JIRA_ISSUE:-no_issue}
 JIRA_VERSION=${JIRA_VERSION:-no_version}
 JIRA_BUILD=${JIRA_BUILD:-Release}
 AUTORETRY=${AUTORETRY:-true}
-USER_TEST=${USER_TEST:-user_la_platform_0}
+USER_TEST=${USER_TEST:-user_ci_0}
 PR_NUMBER=${PR_NUMBER}
 DEMO_URL=${DEMO_URL}
 
@@ -50,9 +50,9 @@ concat_tags() {
     echo ${base_tags}
 }
 
-# TODO: Include get not executed
+# TODO: LAM-7866 Include get not executed
 
-# TODO: Include get failed
+# TODO: LAM-7867 Include get failed
 
 get_jira_issue()
 {

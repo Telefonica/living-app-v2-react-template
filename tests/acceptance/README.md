@@ -62,36 +62,46 @@
       https://confluence.tid.es/pages/viewpage.action?spaceKey=CTO&title=%5BLA-QA%5D+Tools
 
    5. Gitcrypt:
-
       Unlock repository:
-      ```bash
-      git-crypt unlock ~/carpeta/key
-      ```
+         ```bash
+         git-crypt unlock ~/carpeta/key
+         ```
       First time:
       1. lock the repository:
-      ```bash
-         sudo apt install git-crypt
-         git-crypt init
-      ```
+         Linux:
+            ```bash
+               sudo apt install git-crypt
+               git-crypt init
+            ```
+         Mac:
+            ```bash
+            brew install git-crypt
+            ```
       2. Add ".gitattributes" to the project root
       3. Export the key:
-      ```bash
-         git-crypt export-key ~/carpeta/key
-      ```
+         ```bash
+            git-crypt export-key ~/carpeta/key
+         ```
       4. Get base64 project key, and add it to github.
-      ```bash
-      git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | xclip && rm ./tmp-key
-      cat ./project-key.key | base64
-      ```
+         Linux:
+            ```bash
+            git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | xclip && rm ./tmp-key
+            cat ./project-key.key | base64
+            ```
+         Mac:
+            ```bash
+            git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
+            cat ./project-key.key | base64
+            ```
    6. Create Virtual env
-      ```bash
-      python3.11 -m venv .venv
-      ```
+         ```bash
+         python3.11 -m venv .venv
+         ```
    7. Install requirements inside the venv
-      ```bash
-      cd tests/acceptance/
-      pip install -r requirements.txt
-      ```
+         ```bash
+         cd tests/acceptance/
+         pip install -r requirements.txt
+         ```
    8. Include local-toolium.cfg in tests/acceptance
       ```
          [Jira]

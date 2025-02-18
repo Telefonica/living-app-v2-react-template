@@ -46,8 +46,6 @@ concat_tags() {
     else
         base_tags="${new_tags}"
     fi
-
-    echo ${base_tags}
 }
 
 # TODO: LAM-7866 Include get not executed

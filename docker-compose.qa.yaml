@@ -78,21 +78,21 @@ services:
     ports:
       - "3000:3000"
 
-  acceptance-tests: &acceptance_tests
-    image: local/qa-la-net:latest
+  la-qa-env: &la_qa_env
+    image: local/qa-la-env:latest
     build:
       context: .
       dockerfile: tests/acceptance/Dockerfile
       args:
-        NEXUS_USER: ${NEXUS_USER}
-        NEXUS_PASSWORD: ${NEXUS_PASSWORD}
+        NEXUS_LA_USER: ${NEXUS_LA_USER}
+        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
     networks:
       - qa-la-net
     volumes:
       - ./tests/acceptance/:/app
 
   docker-tests:
-    <<: *acceptance_tests
+    <<: *la_qa_env
     environment:
       - PROJECT=${PROJECT}
       - TEST_ENV=${TEST_ENV:-es-dev}
@@ -107,13 +107,33 @@ services:
       - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
       - USER_TEST=${USER_TEST:-user_ci}
       - PR_NUMBER=${PR_NUMBER}
+      - DEMO_URL=${DEMO_URL}
     command:
       - /bin/bash
       - -c
       - |
-        wait-for-it --service browsermob-proxy:8080 --timeout=120 -- &&
+        wait-for-it --service mock-server:8889 --timeout=120 -- &&
         wait-for-it --service selenoid:4444 --timeout=120 -- &&
         ./scripts/run_tests.sh
     depends_on:
       - selenoid
-      - browsermob-proxy
+
+  features-checks:
+    <<: *la_qa_env
+    environment:
+      - JIRA_TOKEN=${JIRA_TOKEN}
+    working_dir: /app
+    command:
+      - /bin/bash
+      - -c
+      - |
+        laqacommons review-duplicated-ids -f features 2> /app/errors_1.txt
+        if [ -s /app/errors_1.txt]; then
+          cat /app/errors_1.txt
+          exit 1
+        fi
+        laqacommons list-jira-bugs -f features -s "'Closed','Resolved'" 2> /app/errors_2.txt
+        if [ -s /app/errors_2.txt]; then
+          cat /app/errors_2.txt
+          exit 1
+        fi

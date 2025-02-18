@@ -114,7 +114,7 @@
          mock_mode: local
          env_file_path: .env.local
          user_test: user_ci_0
-         la_version: 3.25.0-yanguas
+         # la_version: 3.25.0-yanguas
          # pr_number: 468
          # demo_url: https://globalmakermedia.blob.core.windows.net/web-pocs/PRs/la-generic-470/build/index.html
 
@@ -137,14 +137,14 @@
 
 # CIs
 ## Required Secrets 
-
+   (Only repo admin could access to this section) https://github.com/Telefonica/{repository-name}/settings/secrets/actions
 - `GIT_CRYPT_KEY`: Ask la qa team for credentials
 - `HARBOR_QACDCO_PASSWORD`: Ask la qa team for credentials
 - `HARBOR_LA_PASSWORD`: Ask la qa team for credentials
 - `NEXUS_LA_PASSWORD`: Ask la qa team for credentials
 
 ## Required repository variables
-
+   (Only repo admin could access to this section) https://github.com/Telefonica/{repository-name}/settings/variables/actions
 - `HARBOR_LA_USER`: robot$la-qa+default
 - `HARBOR_QACDCO_USER`: robot$qacdo-hub+la
 - `HARBOR_URL`: harbor.tid.es
@@ -154,4 +154,4 @@
 
 # Reports
 
-   # [Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
+## [Allure](https://docs.qameta.io/allure/#_installing_a_commandline)

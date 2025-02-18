@@ -1,27 +1,27 @@
 networks:
-  docker-net:
+  qa-la-net:
     driver: bridge
-    name: docker-net
+    name: qa-la-net
 
 services:
   chrome:
     image: selenoid/chrome:98.0
     networks:
-      - docker-net
+      - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid_video:
     image: selenoid/video-recorder:latest-release
     networks:
-      - docker-net
+      - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid-ui:
     image: aerokube/selenoid-ui:latest
     networks:
-      - docker-net
+      - qa-la-net
     ports:
       - "8081:8080"
     command: [ "--selenoid-uri", "http://selenoid:4444" ]
@@ -29,7 +29,7 @@ services:
   selenoid:
     image: aerokube/selenoid:latest
     networks:
-      - docker-net
+      - qa-la-net
     volumes:
       - /dev/shm:/dev/shm
       - ./tests/tools/selenoid/config:/etc/selenoid:ro
@@ -43,7 +43,7 @@ services:
         "-log-output-dir", "/opt/selenoid/logs",
         "-session-attempt-timeout", "2m",
         "-service-startup-timeout", "2m",
-        "-container-network", "docker-net"
+        "-container-network", "qa-la-net"
     ]
     environment:
       OVERRIDE_VIDEO_OUTPUT_DIR: $PWD/tests/tools/selenoid/.video
@@ -59,7 +59,7 @@ services:
       context: .
       dockerfile: tests/tools/browsermob_proxy/Dockerfile
     networks:
-      - docker-net
+      - qa-la-net
     ports:
       - "8080:8080"
       - "8082:8082"
@@ -74,12 +74,12 @@ services:
       context: .
       dockerfile: Dockerfile
     networks:
-      - docker-net
+      - qa-la-net
     ports:
       - "3000:3000"
 
   acceptance-tests: &acceptance_tests
-    image: local/docker-net:latest
+    image: local/qa-la-net:latest
     build:
       context: .
       dockerfile: tests/acceptance/Dockerfile
@@ -87,7 +87,7 @@ services:
         NEXUS_USER: ${NEXUS_USER}
         NEXUS_PASSWORD: ${NEXUS_PASSWORD}
     networks:
-      - docker-net
+      - qa-la-net
     volumes:
       - ./tests/acceptance/:/app
 

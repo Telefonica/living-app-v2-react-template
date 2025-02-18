@@ -1,0 +1,50 @@
+[
+    {
+      "behave_features": {{ features }},
+      "behave_tags": [
+        "~@skip",
+        "~@manual",
+        "~@slow",
+        "~@not_dev",
+        "~@pre",
+        "~@future",
+        "~@deprecated",
+        "~@jira.dv.*",
+        {% if custom_tag != "no_tag" %}
+        {% set tags_list = custom_tag.split(';') %}
+        {% for tag in tags_list %}
+        {% if tag != "no_tag" %}
+        "{{ tag }}",
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        "~@dv.*"
+      ],
+      "behave_args": [
+        "--junit",
+        "--junit-directory",
+        "_output/reports",
+        "-s"
+      ],
+      "Server_enabled": true,
+      "Server_host": "selenoid",
+      "Server_port": "4444",
+      "Driver_headless": true,
+      "Driver_type": "chrome",
+      {% "br" in environment %}
+      "TestExecution_environment": "{{ environment }}",
+      "TestExecution_language": "br-br",
+      {% else %}
+      "TestExecution_environment": "{{ environment }}",
+      "TestExecution_language": "es-es",
+      {% endif %}
+      "VisualTests_baseline_name": "ci",
+      "JiraExecution_labels": "ft,{{ runner_type }}",
+      {% if jira_version != "CI" and jira_version != "no_version" and jira_version != "" %}
+      "TestExecution_la_version": "{{ jira_version | replace("v3","3") | replace("_",".0-") | lower }}",
+      {% else %}
+      "TestExecution_la_version": "latest",
+      {% endif %}
+      "TestExecution_auto_retry": false
+    }
+]

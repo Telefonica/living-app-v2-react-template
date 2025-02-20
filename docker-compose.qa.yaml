@@ -46,7 +46,8 @@ services:
         "-container-network", "qa-la-net"
     ]
     environment:
-      OVERRIDE_VIDEO_OUTPUT_DIR: $PWD/tests/tools/selenoid/.video
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/tests/tools/selenoid/.video
+      - DISPLAY=:99
     ports:
       - "4444:4444"
     depends_on:
@@ -68,6 +69,22 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
+
+  mock-server:
+    command: sh -c "toolium mock-server --port 8889"
+    networks:
+      - qa-la-net
+    expose:
+      - "8889"
+    ports:
+      - "8889:8889"
+    build:
+      context: .
+      dockerfile: tests/tools/mock/Dockerfile
+      args:
+        NEXUS_LA_USER: ${NEXUS_LA_USER}
+        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
+    working_dir: /app
 
   app:
     build:

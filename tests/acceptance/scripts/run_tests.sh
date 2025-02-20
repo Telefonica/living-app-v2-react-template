@@ -116,7 +116,7 @@ run_acceptance_test()
     fi
 
     local behave_file="./settings/runners/$TEST_ENV/automatic/$PRIORITY/behave-runner-${TEST_ENV}-${PRIORITY}.json"
-    toolium behave-runner -f "$behave_file" $test_params $jira_params $user_params -x -D TestExecution_environment=$TEST_ENV
+    toolium behave-runner -f "$behave_file" $test_params $jira_params $user_params -x
 
     local result=$?
     return $result

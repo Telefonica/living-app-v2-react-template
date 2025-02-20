@@ -1,0 +1,76 @@
+{
+  "base_properties_file": [
+    "common-private-properties.json",
+    "common-sdf-mock.json",
+    "common-living-apps.json"
+  ],
+  "mock_server": {
+    "local": {
+      "protocol": "http",
+      "host": "127.0.0.1",
+      "port": "8888"
+    },
+    "docker": {
+      "protocol": "http",
+      "host": "mock-server",
+      "port": "8888"
+    },
+    "remote": {
+      "protocol": "https",
+      "host": "qa-simple-mock.apps.ocp-epg.tid.es",
+      "port": null
+    }
+  },
+  "api": {
+    "url_path": {
+      "lab": {
+        "auth": {
+          "token": "/auth/token",
+          "totp": "/auth/totp"
+        },
+        "aura_services": {
+          "aura_id": "/aura-services/aura-id"
+        }
+      }
+    }
+  },
+  "tc": {
+    "version": "1",
+    "name": "aura"
+  },
+  "metrics": {
+    "app_id": "41ba08de-c63a-4899-b4bb-788b1e14306c",
+    "host": "https://api.applicationinsights.io",
+    "endpoint": "/v1/apps/{app_id}/query"
+  },
+  "kubernetes": {   
+    "living_apps": {
+      "kubeconfig": "resources/kubeconfigs/es-stg.yml",
+      "terms_and_conditions": {
+        "uri": "http://localhost:3000/v0/users/{user_id}/services",
+        "namespace": "aura-es-stg",
+        "namespace_suffix": "-980",
+        "local_port": "3000",
+        "pod_port": "3000",
+        "pod_name": "deployments/tac"
+      },
+      "mongodb": {
+        "uri": "mongodb+srv://stagging-70.f9smv.mongodb.net",
+        "namespace": "aura-system",
+        "pod_name": "mongodb-0",
+        "port_forward": {
+          "local_port": 27017,
+          "pod_port": 27017
+        },
+        "database": "aura-bot-es-stg",
+        "database_tac": "tac-es-stg",
+        "auth_mechanism": "SCRAM-SHA-1"
+      },
+      "list_mongodb": [
+        "mongodb-2",
+        "mongodb-0",
+        "mongodb-1"
+      ]
+    }
+  }
+}

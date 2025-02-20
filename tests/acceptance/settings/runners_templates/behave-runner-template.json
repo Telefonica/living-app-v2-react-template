@@ -34,17 +34,18 @@
       {% "br" in environment %}
       "TestExecution_environment": "{{ environment }}",
       "TestExecution_language": "br-br",
+      "JiraExecution_Language": "pt",
       {% else %}
       "TestExecution_environment": "{{ environment }}",
       "TestExecution_language": "es-es",
+      "JiraExecution_Language": "es",
       {% endif %}
-      "VisualTests_baseline_name": "ci",
-      "JiraExecution_labels": "ft,{{ runner_type }}",
       {% if jira_version != "CI" and jira_version != "no_version" and jira_version != "" %}
       "TestExecution_la_version": "{{ jira_version | replace("v3","3") | replace("_",".0-") | lower }}",
       {% else %}
       "TestExecution_la_version": "latest",
       {% endif %}
+      "JiraExecution_labels": "ft,{{ runner_type }}",
       "TestExecution_auto_retry": false
     }
 ]

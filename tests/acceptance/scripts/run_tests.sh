@@ -70,10 +70,6 @@ get_jira_issue()
 
 generate_behave_runners()
 {
-    # Include priority as a tag
-    if [[ ${PRIORITY} != "regression" ]]; then
-        TAGS=$(concat_tags "${TAGS}" @"${PRIORITY}")
-    fi
 
     echo "Start Behave runner generation"
     if [[ ${JIRA_ISSUE} != "no_issue" ]]; then
@@ -124,6 +120,11 @@ run_acceptance_test()
 }
 
 find ./_output -type d -exec rm  -rf {} + 2>/dev/null
+
+# Include priority as a tag
+if [[ ${PRIORITY} != "regression" ]]; then
+    TAGS=$(concat_tags "${TAGS}" @"${PRIORITY}")
+fi
 
 generate_behave_runners "$*"
 

@@ -1,11 +1,10 @@
-name: QA Pr sanity
+name: QA PullRequest
 
-on: 
+on:
   pull_request:
-    paths: 
+    paths:
       - 'tests/acceptance/**'
       - 'docker-compose.qa.yaml'
-      - 'docker-compose.laqacommons.yaml'
       - '.github/workflows/qa-*.yaml'
 
 concurrency:
@@ -13,8 +12,8 @@ concurrency:
     cancel-in-progress: true
 
 jobs:
-  get_pr_issue:
-    name: Get pull request issue
+  get-title-jira-issue:
+    name: Get jira issue from pr title
     runs-on: ${{ vars.QA_RUNNER }}
     outputs:
       issue: ${{ steps.get_issue.outputs.jira_id }}
@@ -25,17 +24,15 @@ jobs:
         uses: Telefonica/qacdco-github-actions/utilities/jira/get-jira-id@main
 
   pr-sanity:
-    name: Sanity ${{ needs.get_pr_issue.outputs.issue }}
-    needs: [get_pr_issue]
+    name: Sanity ${{ needs.get-title-jira-issue.outputs.issue }}
+    needs: [get-title-jira-issue]
     uses: ./.github/workflows/qa-acceptance-tests.yaml
     with:
       priority: sanity
-      jira-issue: ${{ needs.get_pr_issue.outputs.issue }}
+      jira-issue: ${{ needs.get-title-jira-issue.outputs.issue }}
     secrets: inherit
 
   feature-checks:
     name: Feature checks
     uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-pull-request-checks.yaml@chore-unificate-qa-workflows
     secrets: inherit
-
-

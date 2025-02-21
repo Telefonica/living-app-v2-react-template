@@ -6,7 +6,7 @@
 
 
 PROJECT=${PROJECT}
-TEST_ENV=${TEST_ENV:-docker}
+TEST_ENV=${TEST_ENV:-es-dev}
 PRIORITY=${PRIORITY:-smoke}
 FEATURES_FOLDER=${FEATURES_FOLDER:-components}
 TAGS=${TAGS:-no_tag}

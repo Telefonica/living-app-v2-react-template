@@ -27,7 +27,7 @@ on:
         required: false
         type: string
         default: no_tag
-      filters-folder:
+      filter-folders:
         required: false
         type: string
         default: "e2e, components"

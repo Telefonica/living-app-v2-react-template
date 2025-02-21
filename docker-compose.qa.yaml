@@ -118,7 +118,6 @@ services:
       - JIRA_VERSION=${JIRA_VERSION:-no_version}
       - JIRA_BUILD=${JIRA_BUILD:-Release}
       - JIRA_TOKEN=${JIRA_TOKEN}
-      - JIRA_LABELS=${JIRA_LABELS:-automatic}
       - AUTORETRY=${AUTORETRY:-true}
       - TAGS=${TAGS:-no_tag}
       - FEATURES_FOLDER=${FEATURES_FOLDER:-components}

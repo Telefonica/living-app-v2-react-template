@@ -113,6 +113,6 @@ jobs:
       jira-build: ${{ inputs.jira-build }}
       jira-issue: ${{ inputs.jira-issue }}
       auto-retry: true
-      max-parallel: 4
+      max-parallel: ${{ inputs.max-parallel }}
       demo-url: ${{ inputs.demo-url }}
     secrets: inherit

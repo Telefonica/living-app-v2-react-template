@@ -6,9 +6,9 @@
 
 
 PROJECT=${PROJECT}
-TEST_ENV=${TEST_ENV:-es-dev}
+TEST_ENV=${TEST_ENV:-docker}
 PRIORITY=${PRIORITY:-smoke}
-FEATURES_FOLDER=${FEATURES_FOLDER:-features/components}
+FEATURES_FOLDER=${FEATURES_FOLDER:-components}
 TAGS=${TAGS:-no_tag}
 JIRA_ISSUE=${JIRA_ISSUE:-no_issue}
 JIRA_VERSION=${JIRA_VERSION:-no_version}
@@ -46,6 +46,7 @@ concat_tags() {
     else
         base_tags="${new_tags}"
     fi
+    echo ${base_tags}
 }
 
 # TODO: LAM-7866 Include get not executed
@@ -116,7 +117,7 @@ run_acceptance_test()
     fi
 
     local behave_file="./settings/runners/$TEST_ENV/automatic/$PRIORITY/behave-runner-${TEST_ENV}-${PRIORITY}.json"
-    toolium behave-runner -f "$behave_file" $test_params $jira_params $user_params -x
+    toolium behave-runner -f "$behave_file" $test_params $jira_params $user_params -x -D TestExecution_environment=$TEST_ENV
 
     local result=$?
     return $result
@@ -156,4 +157,3 @@ echo -e "allure serve ./_output/allure"
 echo -e "--- If you do not have Allure installed, access this link https://docs.qameta.io/allure/#_installing_a_commandline"
 echo -e "--- And follow the instructions"
 echo -e "--------------------------------------------------------------------------------------------"
-

@@ -34,5 +34,5 @@ jobs:
 
   feature-checks:
     name: Feature checks
-    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-pull-request-checks.yaml@chore-unificate-qa-workflows
+    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-pull-request-checks.yaml@master
     secrets: inherit

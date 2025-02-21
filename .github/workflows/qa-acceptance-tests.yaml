@@ -101,7 +101,7 @@ on:
         type: string
 jobs:
   run-tests:
-    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-run-tests.yaml@chore-unificate-qa-workflows
+    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-run-tests.yaml@master
     with:
       project: ${{ vars.PROJECT }}
       app-env: ${{ inputs.app-env }}

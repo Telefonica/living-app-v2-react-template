@@ -40,8 +40,8 @@
       "TestExecution_language": "es-es",
       "JiraExecution_Language": "es",
       {% endif %}
-      {% if jira_version != "CI" and jira_version != "no_version" and jira_version != "" %}
-      "TestExecution_la_version": "{{ jira_version | replace("v3","3") | replace("_",".0-") | lower }}",
+      {% if jira_version not in ["CI", "no_version", ""] %}
+      "TestExecution_la_version": "{{ jira_version[1:] | replace('_', '.0-', 1) | lower }}",
       {% else %}
       "TestExecution_la_version": "latest",
       {% endif %}

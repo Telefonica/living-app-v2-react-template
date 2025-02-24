@@ -1,9 +1,9 @@
 {
     "chrome": {
-        "default": "98.0",
+        "default": "112.0",
         "versions": {
-            "98.0": {
-                "image": "selenoid/chrome:98.0",
+            "112.0": {
+                "image": "selenoid/chrome:112.0",
                 "port": "4444",
                 "path": "/",
                 "env" : ["LANG=es_ES.UTF-8", "LANGUAGE=es:es", "LC_ALL=es_ES.UTF-8", "TZ=Europe/Madrid"]

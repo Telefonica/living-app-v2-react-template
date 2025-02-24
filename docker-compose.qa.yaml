@@ -5,7 +5,7 @@ networks:
 
 services:
   chrome:
-    image: selenoid/chrome:98.0
+    image: selenoid/chrome:112.0
     networks:
       - qa-la-net
     volumes:

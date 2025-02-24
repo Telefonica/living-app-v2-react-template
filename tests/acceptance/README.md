@@ -4,7 +4,7 @@
    
    2. Import vscode Profile.
       Settings -> Profile -> Profiles -> New Profile (More Actions) -> Import Profile
-      Get Profile from proyect -> Projects.code-profile
+      Get Profile from proyect -> settings/Projects.code-profile
 
    3. Configure launch file .vscode/launch.json.
       ```json
@@ -93,16 +93,24 @@
             git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
             cat ./project-key.key | base64
             ```
-   6. Create Virtual env
+   6. Virtual env
+      1. Create vitual env (Project root)
          ```bash
-         python3.11 -m venv .venv
+            python3.11 -m venv .venv
          ```
-   7. Install requirements inside the venv
+      2. Activate (Project root)
          ```bash
-         cd tests/acceptance/
-         pip install -r requirements.txt
+            source .venv/bin/activate
          ```
-   8. Include local-toolium.cfg in tests/acceptance
+      3. Configure env in vscode
+         Ctrl+P -> Python: Select Interpreter
+         ![alt text](documentation/Interpreter.png)
+      4. Install requirements inside the venv
+         ```bash
+            cd tests/acceptance/
+            pip install -r requirements.txt
+         ```
+   7. Include local-toolium.cfg in tests/acceptance
       ```
          [Jira]
          enabled: true

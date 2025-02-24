@@ -5,7 +5,6 @@
 #   behave-runner-config-name: name of the runner config to apply
 
 
-PROJECT=${PROJECT}
 TEST_ENV=${TEST_ENV:-es-dev}
 PRIORITY=${PRIORITY:-smoke}
 FEATURES_FOLDER=${FEATURES_FOLDER:-components}
@@ -22,7 +21,7 @@ print_exec_parameters()
 {
     echo
     echo "***************************************************************"
-    echo -e "Launching ${PROJECT} test: \n" \
+    echo -e "Launching test: \n" \
          " - Environment: ${TEST_ENV}\n" \
          " - Priority: ${PRIORITY}\n" \
          " - Features folder: ${FEATURES_FOLDER}\n" \
@@ -90,7 +89,7 @@ generate_behave_runners()
 
 run_acceptance_test()
 {
-    local jira_params="-D Jira_enabled=true -D Jira_token=$JIRA_TOKEN -D JiraExecution_labels=$PROJECT,ft,$PRIORITY"
+    local jira_params="-D Jira_enabled=true -D Jira_token=$JIRA_TOKEN -D JiraExecution_labels=ft,$PRIORITY"
     if [ -n "${JIRA_BUILD}" ]; then
         jira_params="${jira_params} -D JiraExecution_Build=$JIRA_BUILD"
     fi

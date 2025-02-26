@@ -1,0 +1,22 @@
+line-length = 120
+exclude = [
+    ".venv", 
+    ".ruff_cache",
+    ".vscode",
+    ".github",
+    ".feature"
+    ]
+namespace-packages = ["tests/acceptance"]
+src = ["tests/acceptance"]
+
+[lint]
+select = ["E", "F", "C90", "I", "N", "D", "UP", "YTT", "Q", "RSE", "RET", "R", "W"]
+ignore = ["F403"]
+fixable = ["ALL"]
+
+[format]
+docstring-code-format = true
+docstring-code-line-length = "dynamic"
+
+[lint.pydocstyle]
+convention = "google"

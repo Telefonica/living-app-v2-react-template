@@ -24,3 +24,7 @@ This template project was forked from [living-app-v2-react-template](https://git
 ## Licensing 📝 
 
 - [LICENSE](./LICENSE)
+
+## QA
+
+- [QA README](./tests/acceptance/README.md)

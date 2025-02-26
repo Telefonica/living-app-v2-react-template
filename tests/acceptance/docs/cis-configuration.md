@@ -13,5 +13,4 @@
 - `HARBOR_QACDCO_USER`: robot$qacdo-hub+la
 - `HARBOR_URL`: harbor.tid.es
 - `NEXUS_LA_USER`: bot-la-reader
-- `PROJECT`: Poject label. Example: LA-GENERIC
 - `QA_RUNNER`: Runner. Example: cdorunner-la-qa-platform

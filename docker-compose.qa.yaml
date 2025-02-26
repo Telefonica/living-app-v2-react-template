@@ -111,7 +111,6 @@ services:
   docker-tests:
     <<: *la_qa_env
     environment:
-      - PROJECT=${PROJECT}
       - TEST_ENV=${TEST_ENV:-es-dev}
       - PRIORITY=${PRIORITY:-smoke}
       - JIRA_ISSUE=${JIRA_ISSUE:-no_issue}

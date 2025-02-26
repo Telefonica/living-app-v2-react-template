@@ -36,12 +36,9 @@
    7. Include local-toolium.cfg in tests/acceptance
       Download the [local-toolium.json](./utils/template-local-toolium.cfg) file and place it in the `tests/acceptance/settings/` directory.
       
-
 # Reports
-
 ## Allure
-   ### Install
-   [Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
-   
-   ### Configure in project
-   ![Allure Toolium](./images/allure-toolium.png)
+### Install
+[Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
+### Configure in project
+![Allure Toolium](./images/allure-toolium.png)

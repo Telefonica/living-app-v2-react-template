@@ -1,0 +1,3 @@
+# QA commons
+--extra-index-url https://${NEXUS_LA_USER}:${NEXUS_LA_PASSWORD}@nexus.tid.es/repository/pypi-la-qacommons/simple/ --trusted-host nexus.tid.es
+laqacommons == 0.3.39.dev0

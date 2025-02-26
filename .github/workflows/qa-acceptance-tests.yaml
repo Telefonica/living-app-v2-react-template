@@ -1,0 +1,118 @@
+name: QA Run Acceptance Tests
+
+on:
+  workflow_call:
+    inputs:
+      app-env:
+        required: false
+        type: string
+        default: es-dev
+      priority:
+        required: true
+        type: string
+        default: smoke
+      jira-issue:
+        type: string
+        required: false
+        default: no_issue
+      jira-executed-version:
+        type: string
+        required: false
+        default: CI
+      jira-build:
+        type: string
+        required: false
+        default: Release
+      filter-tags: 
+        required: false
+        type: string
+        default: no_tag
+      filter-folders:
+        required: false
+        type: string
+        default: "e2e, components"
+      max-parallel:
+        required: false
+        type: string
+        default: "2"
+
+  workflow_dispatch:
+    inputs:
+      app-env:
+        description: 'Select the environment'
+        required: true
+        type: choice
+        default: es-dev
+        options:
+          - es-dev
+          - es-qa
+          - es-beta
+      priority:
+        description: 'Select priority'
+        required: true
+        type: choice
+        default: regression
+        options:
+          - regression
+          - sanity
+          - smoke
+      jira-issue:
+        description: 'JIRA Isssue. Run assigned tests with: @jira.link.detects.* or @jira.link.tests.*'
+        type: string
+        required: false
+        default: no_issue
+      jira-executed-version:
+        description: 'Jira Version'
+        type: string
+        required: false
+        default: no_version
+      jira-build:
+        description: 'Jira Build'
+        required: false
+        type: choice
+        default: Release
+        options:
+          -  "Release"
+          -  "rc1"
+          -  "rc2"
+          -  "rc3"
+      filter-tags:
+        description: 'Scenario tags, tags separated with "," use or condition, tags with ";" use and condition'
+        type: string
+        required: false
+        default: no_tag
+      filter-folders:
+        required: false
+        type: string
+        default: e2e, components, integration
+      max-parallel:
+        description: 'Max parallel tests'
+        required: false
+        type: choice
+        default: "2"
+        options:
+          -  "1"
+          -  "2"
+          -  "3"
+          -  "4"
+      demo-url:
+        description: 'Demo URL'
+        required: false
+        type: string
+jobs:
+  run-tests:
+    uses: Telefonica/living-apps-gh-actions/.github/workflows/qa-run-tests.yaml@master
+    with:
+      project: ${{ vars.PROJECT }}
+      app-env: ${{ inputs.app-env }}
+      priority: ${{ inputs.priority }}
+      user-test: user_la_platform
+      filter-tags: ${{ inputs.filter-tags }}
+      filter-folders: ${{ inputs.filter-folders }}
+      jira-executed-version: ${{ inputs.jira-executed-version }}
+      jira-build: ${{ inputs.jira-build }}
+      jira-issue: ${{ inputs.jira-issue }}
+      auto-retry: true
+      max-parallel: ${{ inputs.max-parallel }}
+      demo-url: ${{ inputs.demo-url }}
+    secrets: inherit

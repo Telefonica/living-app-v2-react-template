@@ -6,6 +6,11 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
+_output*
+_output.tar
+_output.zip
+_output.tar.gz
+_output.rar
 
 # dependencies
 node_modules
@@ -36,3 +41,14 @@ node_modules
 .env.development.local
 .env.test.local
 .env.production.local
+.venv
+
+# local conf
+local-*.cfg
+
+#local resources
+acceptance/resources/baseline/local*
+
+# automatic runners folders
+settings/runners/**/automatic/*
+**/tools/selenoid/*

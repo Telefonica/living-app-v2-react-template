@@ -1,0 +1,155 @@
+networks:
+  qa-la-net:
+    driver: bridge
+    name: qa-la-net
+
+services:
+  chrome:
+    image: selenoid/chrome:112.0
+    networks:
+      - qa-la-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  selenoid_video:
+    image: selenoid/video-recorder:latest-release
+    networks:
+      - qa-la-net
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    networks:
+      - qa-la-net
+    ports:
+      - "8081:8080"
+    command: [ "--selenoid-uri", "http://selenoid:4444" ]
+
+  selenoid:
+    image: aerokube/selenoid:latest
+    networks:
+      - qa-la-net
+    volumes:
+      - /dev/shm:/dev/shm
+      - ./tests/tools/selenoid/config:/etc/selenoid:ro
+      - ./tests/tools/selenoid/.video:/opt/selenoid/video
+      - ./tests/tools/selenoid/.logs:/opt/selenoid/logs
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    shm_size: 2g
+    command: [
+        "-conf", "/etc/selenoid/browsers.json",
+        "-video-output-dir", "/opt/selenoid/video",
+        "-log-output-dir", "/opt/selenoid/logs",
+        "-session-attempt-timeout", "2m",
+        "-service-startup-timeout", "2m",
+        "-container-network", "qa-la-net"
+    ]
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=$PWD/tests/tools/selenoid/.video
+      - DISPLAY=:99
+    ports:
+      - "4444:4444"
+    depends_on:
+      - chrome
+      - selenoid-ui
+
+  browsermob-proxy:
+    image: browsermob_proxy
+    build:
+      context: .
+      dockerfile: tests/tools/browsermob_proxy/Dockerfile
+    networks:
+      - qa-la-net
+    ports:
+      - "8080:8080"
+      - "8082:8082"
+    logging:
+      driver: "local"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  mock-server:
+    command: sh -c "toolium mock-server --port 8889"
+    networks:
+      - qa-la-net
+    expose:
+      - "8889"
+    ports:
+      - "8889:8889"
+    build:
+      context: .
+      dockerfile: tests/tools/mock/Dockerfile
+      args:
+        NEXUS_LA_USER: ${NEXUS_LA_USER}
+        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
+    working_dir: /app
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - qa-la-net
+    ports:
+      - "3000:3000"
+
+  la-qa-env: &la_qa_env
+    image: local/qa-la-env:latest
+    build:
+      context: .
+      dockerfile: tests/acceptance/Dockerfile
+      args:
+        NEXUS_LA_USER: ${NEXUS_LA_USER}
+        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
+    networks:
+      - qa-la-net
+    volumes:
+      - ./tests/acceptance/:/app
+
+  docker-tests:
+    <<: *la_qa_env
+    environment:
+      - TEST_ENV=${TEST_ENV:-es-dev}
+      - PRIORITY=${PRIORITY:-smoke}
+      - JIRA_ISSUE=${JIRA_ISSUE:-no_issue}
+      - JIRA_VERSION=${JIRA_VERSION:-no_version}
+      - JIRA_BUILD=${JIRA_BUILD:-Release}
+      - JIRA_TOKEN=${JIRA_TOKEN}
+      - AUTORETRY=${AUTORETRY:-true}
+      - TAGS=${TAGS:-no_tag}
+      - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
+      - USER_TEST=${USER_TEST:-user_ci}
+      - PR_NUMBER=${PR_NUMBER}
+      - DEMO_URL=${DEMO_URL}
+    command:
+      - /bin/bash
+      - -c
+      - |
+        wait-for-it --service mock-server:8889 --timeout=120 -- &&
+        wait-for-it --service selenoid:4444 --timeout=120 -- &&
+        ./scripts/run_tests.sh
+    depends_on:
+      - selenoid
+
+  features-checks:
+    <<: *la_qa_env
+    environment:
+      - JIRA_TOKEN=${JIRA_TOKEN}
+      - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
+    working_dir: /app
+    command:
+      - /bin/bash
+      - -c
+      - |
+        laqacommons review-duplicated-ids -f ${FEATURES_FOLDER} 2> /app/errors_1.txt
+        if [ -s /app/errors_1.txt]; then
+          cat /app/errors_1.txt
+          exit 1
+        fi
+        laqacommons list-jira-bugs -f ${FEATURES_FOLDER} -s "'Closed','Resolved'" 2> /app/errors_2.txt
+        if [ -s /app/errors_2.txt]; then
+          cat /app/errors_2.txt
+          exit 1
+        fi

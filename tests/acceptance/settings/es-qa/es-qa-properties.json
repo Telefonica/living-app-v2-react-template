@@ -1,0 +1,26 @@
+{
+  "base_properties_file": [
+    "../common-properties.json",
+    "es-qa-private-properties.json"
+  ],
+  "environment_name": "es-qa",
+  "kubeconfig_name": "es-stg.yml",
+  "stb-backend": {
+    "url": "https://api.es-dev.movistar-home.com",
+    "api": {
+      "authentication": {
+        "authenticate_device": "/api/v1/auth/jwt",
+        "retrieve_auraid": "/api/v1/auth/aura_id",
+        "directline_token": "/api/v1/auth/directline_token"
+      },
+      "devices": [
+        "stb-la",
+        "api"
+      ]
+    }
+  },
+  "api": {
+    "url": "https://api.es-qa.livingappsmaker.com"
+  },
+  "contents_lab_blob_url": "https://lamakersaesqa.blob.core.windows.net"
+}

@@ -1,0 +1,15 @@
+{
+  "sdf-mock": {
+    "url": "https://sdf.apps.ocp-epg.tid.es/api/v1/sdf/",
+    "user": "telefonica",
+    "password": "livingapps",
+    "redirect-uri": "https://globalmakermedia.blob.core.windows.net/living-apps/latest/la-generic/web/_v.json",
+    "lines": {
+      "user_ci_0": {
+        "user_id": "XXXXXXXX_0",
+        "phone_number": "+34XXXXXXXXX",
+        "uid": "XXXXXXXXX"
+      }
+    }
+  }
+}

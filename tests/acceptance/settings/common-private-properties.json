@@ -1,0 +1,17 @@
+{
+  "tc_api_key": "#TODO",
+  "4p": {
+    "private_key": "#TODO"
+  },
+  "metrics": {
+    "api_key": "#TODO"
+  },
+  "kubernetes": {   
+    "living_apps": {
+      "mongodb": {
+        "auth_user": "adminuser",
+        "password": "#TODO"
+      }
+    }
+  }
+}

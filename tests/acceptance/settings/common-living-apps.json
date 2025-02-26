@@ -1,0 +1,10 @@
+{
+  "living_apps": {
+    "radio-player": {
+      "name": "radio-player",
+      "build_url_release": "https://globalmakermedia.blob.core.windows.net/living-apps/{la_version}/la-generic/web/index.html",
+      "build_url_pr": "https://globalmakermedia.blob.core.windows.net/web-pocs/PRs/la-generic-{pr_number}/build/index.html",
+      "contents_lab_env": "live"
+    }
+  }
+}

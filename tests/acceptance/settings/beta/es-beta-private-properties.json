@@ -1,0 +1,19 @@
+{
+  "users": {
+    "admin": {
+      "name": "admin",
+      "login": "admin",
+      "password": "#TODO",
+      "partner_id": null,
+      "totp_secret": "#TODO"
+    }
+  },
+  "kubernetes": {
+    "living_apps": {
+      "mongodb": {
+        "auth_user": "kgb_user",
+        "password": "#TODO"
+      }
+    }
+  }
+}

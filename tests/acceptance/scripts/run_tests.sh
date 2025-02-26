@@ -29,7 +29,7 @@ print_exec_parameters()
          " - Jira Issue: ${JIRA_ISSUE}\n" \
          " - Jira version: ${JIRA_VERSION}\n" \
          " - Jira build: ${JIRA_BUILD}\n" \
-         " - Autoretry: ${AUTORETRY}\n" \
+         " - Auto-retry: ${AUTORETRY}\n" \
          " - Number of the Pull Request: ${PR_NUMBER}\n" \
          " - Demo url: ${DEMO_URL}\n" \
          " - User test line: ${USER_TEST}"

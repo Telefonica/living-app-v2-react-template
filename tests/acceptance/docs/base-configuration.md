@@ -4,7 +4,7 @@
    
    2. Import vscode Profile.
       Settings -> Profile -> Profiles -> New Profile (More Actions) -> Import Profile
-      Get Profile from proyect -> settings/Projects.code-profile
+      Get Profile from proyect -> docs/Projects.code-profile
 
    3. Configure launch file .vscode/launch.json.
       ```json

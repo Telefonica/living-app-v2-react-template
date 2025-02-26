@@ -1,0 +1,114 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Scenario",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "${file}",
+                "-n",
+                "${selectedText}",
+                "-s"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "jinja": true
+        },
+        {
+            "name": "Feature",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "${file}"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "jinja": true
+        },
+        {
+            "name": "Feature only tag",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "${file}",
+                "-t",
+                "${selectedText},@jira.${selectedText},@${selectedText}",
+                "-t",
+                "~@skip",
+                "-t",
+                "~@future",
+                "-t",
+                "~@bug",
+                "-s"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "Features folders",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "${workspaceFolder}/tests/acceptance/features/",
+                "-t",
+                "~@future",
+                "-t",
+                "~@manual",
+                "-t",
+                "~@skip",
+                "-s"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "Python: Current File with my args",
+            "type": "debugpy",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "program": "${file}",
+            "args": [
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "LAQACommons - jira-queries",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "laqacommons",
+            "env": {
+              "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+              "jira-queries"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        }
+    ]
+}

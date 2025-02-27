@@ -2,7 +2,7 @@
 
 ## Index
 1. [Base configuration](./docs/base-configuration.md#base-configuration)
-2. [CIs configuration](./docs/cis-configuration.md.md#cis)
+2. [CIs configuration](./docs/cis-configuration.md#cis)
 3. [Reports](./docs/base-configuration.md#reports)
 
 ## Run Local Tests

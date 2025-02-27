@@ -17,8 +17,6 @@
             git-crypt unlock ~/carpeta/key.key
          ```
 
-      Configure git-crypt in project: [Configure Git-Crypt](./configure-git-crypt.md#git-crypt)
-
    5. Virtual env (Root project)
       ```bash
          python3.11 -m venv .venv
@@ -26,7 +24,7 @@
       ```
       Configure env in vscode:
          Ctrl+P -> Python: Select Interpreter
-         ![alt text](documentation/Interpreter.png)
+         ![python iterpreter](documentation/Interpreter.png)
 
    6. Install requirements inside the venv
       ```bash
@@ -34,11 +32,13 @@
          pip install -r requirements.txt
       ```
    7. Include local-toolium.cfg in tests/acceptance
-      Download the [local-toolium.json](./utils/template-local-toolium.cfg) file and place it in the `tests/acceptance/settings/` directory.
-      
+      Download the [local-toolium.json](./utils/template-local-toolium.cfg) file and place it in the `tests/acceptance/settings` directory.
+
 # Reports
+
 ## Allure
-### Install
-[Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
-### Configure in project
-![Allure Toolium](./images/allure-toolium.png)
+   ### Install
+   [Allure](https://docs.qameta.io/allure/#_installing_a_commandline)
+   
+   ### Configure in project
+   ![Allure Toolium](./images/allure-toolium.png)

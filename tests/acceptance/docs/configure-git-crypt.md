@@ -1,5 +1,6 @@
 # Git Crypt:
 1. Install git-crypt:
+   
    Linux:
    ```bash
       sudo apt install git-crypt

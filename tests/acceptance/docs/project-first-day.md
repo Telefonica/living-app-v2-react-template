@@ -19,13 +19,19 @@ This is only required when is first project day, if is YOUR first day in project
 
 5. Update `laqacommons` version in requirements to the latest
 
-6. Include settings/toolium.cfg QAUser jira token (Ask QA Team):
+6. Update in settings/toolium.cfg the following values:
    ```
    [Jira]
-   enabled: false
-   reportAfter: feature
-   token: # TODO
+   token: {QAUser token}
+
+   [TestExecution]
+   matricula: ID0XXXX
+
+   [Capabilities]
+   browserVersion: 128.0
    ```
+   ![selenoid__options](images/selenoid__options.png)
+
 7. Configure Project lines:
    https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json
 
@@ -42,3 +48,8 @@ This is only required when is first project day, if is YOUR first day in project
       ![upload features](images/upload-features.png)
       1: Test Plan Number.
       2: Project Component.
+
+9. Update Living App data in settings: 
+   [Settings](../settings/common-living-apps.json)
+   [Environment](../common/environment.py)
+   Replace todo-app with la name in both files

@@ -14,6 +14,7 @@
 
       Unlock repository:
          ```bash
+            cd tests/acceptance/
             git-crypt unlock ~/carpeta/key.key
          ```
 

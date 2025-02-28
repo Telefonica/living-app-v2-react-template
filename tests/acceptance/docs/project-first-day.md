@@ -33,16 +33,17 @@ This is only required when is first project day, if is YOUR first day in project
    ![selenoid__options](images/selenoid__options.png)
 
 7. Configure Project lines:
+   Create project lines: [Create lines](./create-lines.md#create-lines)
+
+   Included to users.json ->
    https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json
 
    Include Project lines in: [SDF Mock File](../settings/common-sdf-mock.json)
 
-   TODO: Where the lines came from, if there are not in the user.json?
-    
 8. Include base settings in .qa folder
-   1. Reserve lines:
+   1. Reserve lines:<br>
       ![reserve lines](images/reserve-lines.png)
-   2. Upload Feature:
+   2. Upload Feature:<br>
       Search in Jira "project = QALAGLOB and issuetype = 'Test Plan' and labels not in (uat)"
       ![tests plans](images/test-plan.png)
       ![upload features](images/upload-features.png)

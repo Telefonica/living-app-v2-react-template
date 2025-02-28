@@ -1,6 +1,5 @@
 # Git Crypt:
-1. Install git-crypt:
-   
+1. Install git-crypt: <br>
    Linux:
    ```bash
       sudo apt install git-crypt
@@ -30,7 +29,7 @@
       git-crypt export-key ~/carpeta/key.key
    ```
 
-5. Get base64 project key, and add it to github.
+5. Get base64 project key, and add it to github.<br>
    Linux:
    ```bash
    git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | xclip && rm ./tmp-key

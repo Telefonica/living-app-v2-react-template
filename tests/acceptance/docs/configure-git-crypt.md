@@ -40,3 +40,5 @@
    git-crypt export-key ./tmp-key && cat ./tmp-key | base64 | pbcopy && rm ./tmp-key
    cat ./project-key.key | base64
    ```
+
+↩️ **[Go Back to QA Readme](../README.md)**

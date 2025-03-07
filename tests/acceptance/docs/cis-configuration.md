@@ -14,3 +14,5 @@
 - `HARBOR_URL`: harbor.tid.es
 - `NEXUS_LA_USER`: bot-la-reader
 - `QA_RUNNER`: Runner. Example: cdorunner-la-qa-platform
+
+↩️ **[Go Back to QA Readme](../README.md)**

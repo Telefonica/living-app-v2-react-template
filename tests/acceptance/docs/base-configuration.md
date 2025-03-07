@@ -41,3 +41,5 @@ Include local-toolium.cfg in tests/acceptance
 Download the [local-toolium.json](./utils/template-local-toolium.cfg) file and place it in the `tests/acceptance/settings` directory.
 
 ## [Project First Day](./project-first-day.md#project-first-day)
+
+↩️ **[Go Back to QA Readme](../README.md)**

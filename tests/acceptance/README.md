@@ -7,9 +7,9 @@
 4. [Run CIs tests](#run-cis-tests)
 5. [Check Results in Jira](#check-results-in-jira)
 6. [Generate Release Report](#generate-release-report)
+7. [QA Commons](https://github.com/Telefonica/living-apps-qa-common)
 
 ## Run Local Tests
-
 ### Set local-toolium options:
 #### Set if the execution is headless or not.
  ```
@@ -59,7 +59,7 @@ labels: ft,regression
 **Press F5 in keyboard to RUN the launcher**
 
 ## Run CIs tests
-Navigates to proyect actions: https://github.com/Telefonica/{project}/actions/workflows/qa-acceptance-tests.yaml <br>
+Navigates to proyect actions: https://github.com/Telefonica/{repository-name}/actions/workflows/qa-acceptance-tests.yaml <br>
 Select `QA Run Acceptance Tests` workflow <br>
 Inputs:
 * _Select the environment_<br> 
@@ -186,3 +186,6 @@ laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p
 * Components
 
 **Click Generate**
+
+
+↩️ **[Go Back to Readme](../../README.md)**

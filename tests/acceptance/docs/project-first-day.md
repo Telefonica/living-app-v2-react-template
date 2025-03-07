@@ -2,24 +2,25 @@
 
 This is only required when is first project day, if is YOUR first day in project only check Base configuration.
 
-1. [Base configuration](./base-configuration.md#base-configuration)
-   
-2. [Configure Git-Crypt](./configure-git-crypt.md#git-crypt)
-   Upload created key to https://confluence.tid.es/pages/viewpage.action?spaceKey=CTO&title=%5BLA-QA%5D+Tools
-   Base64 project key, Must be included in GH Actions secrets (Admin credentials required)
+## Configure Git-Crypt
 
-3. Set settings credentials for required enviroments: (Ask QA Team)
+   1. [Crypt Project](./configure-git-crypt.md#git-crypt)
+   2. Upload created key to [QA Keys](https://confluence.tid.es/pages/viewpage.action?spaceKey=CTO&title=%5BLA-QA%5D+Tools)<br>
+   3. Base64 project key, Must be included in GH Actions secrets (Admin credentials required)
+
+## Set Enviroments credentials: (Ask QA Team)
    ![private settings](images/private-settings.png)
 
-4. Create .env.local and set expected credentials (Ask QA Team)
+## Create .env.local and set expected credentials (Ask QA Team)
    Export creadentials:
    ```bash
       export $(cat .env.local | xargs)
    ```
 
-5. Update `laqacommons` version in requirements to the latest
+## Update `laqacommons` 
+[QA Commons](https://github.com/Telefonica/living-apps-qa-common)
 
-6. Update in settings/toolium.cfg the following values:
+## Update in settings/toolium.cfg the following values:
    ```
    [Jira]
    token: {QAUser token}
@@ -32,7 +33,7 @@ This is only required when is first project day, if is YOUR first day in project
    ```
    ![selenoid__options](images/selenoid__options.png)
 
-7. Configure Project lines:
+## Configure Project lines:
    Create project lines: [Create lines](./create-lines.md#create-lines)
 
    Included to users.json ->
@@ -40,7 +41,7 @@ This is only required when is first project day, if is YOUR first day in project
 
    Include Project lines in: [SDF Mock File](../settings/common-sdf-mock.json)
 
-8. Include base settings in .qa folder
+## Include base settings in .qa folder
    1. Reserve lines:<br>
       ![reserve lines](images/reserve-lines.png)
    2. Upload Feature:<br>
@@ -50,7 +51,7 @@ This is only required when is first project day, if is YOUR first day in project
       1: Test Plan Number.
       2: Project Component.
 
-9. Update Living App data in settings: 
+## Update Living App data in settings: 
    [Settings](../settings/common-living-apps.json)
    [Environment](../common/environment.py)
    Replace todo-app with la name in both files

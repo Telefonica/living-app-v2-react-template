@@ -37,7 +37,7 @@
             "jinja": true
         },
         {
-            "name": "Feature only tag",
+            "name": "Tags",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",
@@ -61,7 +61,7 @@
             "justMyCode": false
         },
         {
-            "name": "Features folders",
+            "name": "Folders",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",
@@ -83,7 +83,7 @@
             "justMyCode": false
         },
         {
-            "name": "Python: Current File with my args",
+            "name": "Python script",
             "type": "debugpy",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
@@ -96,7 +96,7 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "LAQACommons - jira-queries",
+            "name": "LAQACommons - script",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",

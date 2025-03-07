@@ -26,6 +26,7 @@ from laqacommons.steps.environment import (
 
 def before_step(context, step):
     """Execute qa commons before step.
+
     :param context: Behave context
     :param step: step
     :return:
@@ -35,6 +36,7 @@ def before_step(context, step):
 
 def after_step(context, step):
     """Execute qa commons after step.
+
     :param context: Behave context
     :param step: step
     :return:
@@ -44,6 +46,7 @@ def after_step(context, step):
 
 def before_scenario(context, scenario):
     """Execute qa commons before scenario.
+
     :param context: Behave context
     :param scenario: scenario
     :return:
@@ -53,6 +56,7 @@ def before_scenario(context, scenario):
 
 def after_scenario(context, scenario):
     """Execute qa commons after scenario.
+
     :param context: Behave context
     :param scenario: scenario
     :return:
@@ -62,15 +66,21 @@ def after_scenario(context, scenario):
 
 def before_feature(context, feature):
     """Execute qa commons before feature.
+
     :param context: Behave context
     :param feature: feature
     :return:
     """
     qa_commons_before_feature(context, feature)
 
+    # Get living apps settings information
+    context.living_app_props = context.map_param("[CONF:living_apps.todo-app]")
+    context.living_app_name = context.map_param("[CONTEXT:living_app_props.name]")
+
 
 def after_feature(context, feature):
     """Execute qa commons after feature.
+
     :param context: Behave context
     :param feature: feature
     :return:
@@ -80,6 +90,7 @@ def after_feature(context, feature):
 
 def before_all(context):
     """Execute qa commons before all.
+
     :param context: Behave context
     :return:
     """
@@ -88,6 +99,7 @@ def before_all(context):
 
 def after_all(context):
     """Execute qa commons after all.
+
     :param context: Behave context
     :return:
     """

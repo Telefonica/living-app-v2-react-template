@@ -2,9 +2,10 @@
 
 ## Index
 1. [Base configuration](./docs/base-configuration.md#base-configuration)
-2. [CIs configuration](./docs/cis-configuration.md#cis)
-3. [Reports](./docs/base-configuration.md#reports)
-4. [Project First Day](./docs/project-first-day.md#project-first-day)
+2. [Project First Day](./docs/project-first-day.md#project-first-day)
+3. [CIs configuration](./docs/cis-configuration.md#cis)
+4. [Reports](./docs/reports.md.md#reports)
+
 
 ## Run CIs tests
 

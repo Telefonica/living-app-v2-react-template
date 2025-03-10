@@ -40,6 +40,17 @@ Ctrl+P -> Python: Select Interpreter
 Include local-toolium.cfg in tests/acceptance
 Download the [local-toolium.json](./utils/template-local-toolium.cfg) file and place it in the `tests/acceptance/settings` directory.
 
+## Download chromedriver
+Check Chrome browser version and download the expected chromedriver <br>
+[Chromedriver](https://googlechromelabs.github.io/chrome-for-testing/) <br>
+
+Set chromediver path in local-toolium.cfg
+```
+[Driver]
+type: chrome
+chrome_driver_path: /usr/local/share/chromedriver
+```
+
 ## [Project First Day](./project-first-day.md#project-first-day)
 
 ↩️ **[Go Back to QA Readme](../README.md)**

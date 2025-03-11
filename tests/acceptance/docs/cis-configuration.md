@@ -24,4 +24,8 @@ Include repository iaac in repository: <br>
 
 Edit `allowed_repos` file and `runner-groups.yaml`
 
+## Clean CIs runners
+
+[Clean Workflow](https://github.com/Telefonica/living-apps-qa-common/actions/workflows/clean_runners.yaml)d
+
 ↩️ **[Go Back to QA Readme](../README.md)**

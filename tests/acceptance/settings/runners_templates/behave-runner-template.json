@@ -31,7 +31,7 @@
       "Server_port": "4444",
       "Driver_headless": true,
       "Driver_type": "chrome",
-      {% "br" in environment %}
+      {% if "br" in environment %}
       "TestExecution_environment": "{{ environment }}",
       "TestExecution_language": "br-br",
       "JiraExecution_Language": "pt",

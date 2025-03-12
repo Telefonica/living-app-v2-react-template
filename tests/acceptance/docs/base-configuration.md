@@ -1,6 +1,6 @@
 # Base configuration:
 
-Required Python version 3.11
+Required Python version 3.11.11
    
 ## Vscode Configuration
 ### Import vscode Profile.

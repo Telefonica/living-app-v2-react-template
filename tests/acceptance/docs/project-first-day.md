@@ -55,7 +55,7 @@ This is only required when is first project day, if is YOUR first day in project
       |phone       | identities(phone_number).id |
       |admin_code  | identities(iptv).id         |
 
-2. [Upload Feature:](../../../.qa/toolium.sh)<br>
+2. [Upload Feature:](../../../.qa/jira-upload.sh)<br>
    Search in Jira "project = QALAGLOB and issuetype = 'Test Plan' and labels not in (uat)"
    ![tests plans](images/test-plan.png)
    ![upload features](images/upload-features.png)

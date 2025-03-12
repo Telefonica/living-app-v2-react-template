@@ -28,7 +28,7 @@ Select tests/acceptance/requirements.txt -> OK
 
 ### Create with Command (Root project):
 ```bash
-python3.11 -m venv .venv
+python3.11.11 -m venv .venv
 source .venv/bin/activate
 cd tests/acceptance/
 pip install -r requirements.txt

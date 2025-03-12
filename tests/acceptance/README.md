@@ -148,6 +148,7 @@ laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p
     version: v3.26_Zorita
     Build: Release
     labels: ft,regression
+    Language: es
     ```
    
 ### Choose the runner:

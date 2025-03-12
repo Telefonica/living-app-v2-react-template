@@ -20,20 +20,7 @@ This is only required when is first project day, if is YOUR first day in project
 ## 4. Update `laqacommons` 
 [QA Commons](https://github.com/Telefonica/living-apps-qa-common)
 
-## 5. Update in settings/toolium.cfg the following values:
-   ```
-   [Jira]
-   token: {QAUser token}
-
-   [TestExecution]
-   matricula: ID0XXXX
-
-   [Capabilities]
-   browserVersion: 128.0
-   ```
-   ![selenoid__options](images/selenoid__options.png)
-
-## 6. Configure Project lines:
+## 5. Configure Project lines:
    Create project lines: [Create lines](./create-lines.md#create-lines)
 
    Included to users.json -> [user json](https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json)<br>
@@ -46,7 +33,7 @@ This is only required when is first project day, if is YOUR first day in project
    | uid                  | id_document.value           |
 
 
-## 7. Include base settings in .qa folder
+## 6. Include base settings in .qa folder
 1. [Reserve lines:](../../../.qa/reserve.sh)<br>
    ![reserve lines](images/reserve-lines.png)
       | reserve.sh | [user.json](https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json)                   |
@@ -62,10 +49,27 @@ This is only required when is first project day, if is YOUR first day in project
    1: Test Plan Number.
    2: Project Component.
 
-## 8. Update Living App data in settings: 
+## 7. Update Living App data in settings: 
    [Settings](../settings/common-living-apps.json)
    [Environment](../common/environment.py)
    Replace todo-app with la name in both files
-## 9. Replace {repository-name}
+
+## 8. Replace {repository-name}
+
+## 9. Update in [toolium.cfg](../settings/toolium.cfg) the following values:
+   ```
+   [Jira]
+   token: {QAUser token}
+
+   [TestExecution]
+   matricula: ID0XXXX
+
+   [Capabilities]
+   browserVersion: 128.0
+
+   [TestExecution]
+   user_test: user_ci_0
+   ```
+   ![selenoid__options](images/selenoid__options.png)
 
 ↩️ **[Go Back to QA Readme](../README.md)**

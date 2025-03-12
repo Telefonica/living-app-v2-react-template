@@ -1,6 +1,7 @@
 # Create Lines
 
 Include lines in [Users.json](https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json)<br>
+[Random String Generator](https://www.random.org/strings/) 
 **All the ids must be unique**
 
 ## Id used to reserve line.
@@ -12,10 +13,11 @@ The IDs of ES users must consist of a string of numbers and uppercase letters wi
 It must have the DNI or NIE characteristics but must be unique. <br>
 ![line id document](./images/id-document.png)
 
-## Identities -> phone_number                            
+## Identities 
+![roles](./images/roles.png)<br>
+Phone number -> It must have +34{8-numbers}                       
+Roles -> Include expected roles, basic ones - owner, admin, basic.<br>
 
-Include expected roles, basic ones - owner, admin, basic.<br>
-![roles](./images/roles.png)
 
 ## IPTV service
 ![IPTV service](./images/iptv-service.png)

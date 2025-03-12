@@ -36,20 +36,31 @@ This is only required when is first project day, if is YOUR first day in project
 ## 6. Configure Project lines:
    Create project lines: [Create lines](./create-lines.md#create-lines)
 
-   Included to users.json ->
-   https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json
+   Included to users.json -> [user json](https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json)<br>
+   Include Project lines in: [SDF Mock File](../settings/common-sdf-mock.json)<br>
 
-   Include Project lines in: [SDF Mock File](../settings/common-sdf-mock.json)
+   | common-sdf-mock.json | user.json                   | 
+   |----------------------|-----------------------------|
+   | user_id              | id                          |
+   | phone_number         | identities(phone_number).id |
+   | uid                  | id_document.value           |
+
 
 ## 7. Include base settings in .qa folder
-   1. Reserve lines:<br>
-      ![reserve lines](images/reserve-lines.png)
-   2. Upload Feature:<br>
-      Search in Jira "project = QALAGLOB and issuetype = 'Test Plan' and labels not in (uat)"
-      ![tests plans](images/test-plan.png)
-      ![upload features](images/upload-features.png)
-      1: Test Plan Number.
-      2: Project Component.
+1. [Reserve lines:](../../../.qa/reserve.sh)<br>
+   ![reserve lines](images/reserve-lines.png)
+      | reserve.sh | [user.json](https://github.com/Telefonica/baikal-global-mocks/blob/master/api/provision/tenants/globalint/users.json)                   |
+      |------------|----------------------|
+      |user-id     | id                          |
+      |phone       | identities(phone_number).id |
+      |admin_code  | identities(iptv).id         |
+
+2. [Upload Feature:](../../../.qa/toolium.sh)<br>
+   Search in Jira "project = QALAGLOB and issuetype = 'Test Plan' and labels not in (uat)"
+   ![tests plans](images/test-plan.png)
+   ![upload features](images/upload-features.png)
+   1: Test Plan Number.
+   2: Project Component.
 
 ## 8. Update Living App data in settings: 
    [Settings](../settings/common-living-apps.json)

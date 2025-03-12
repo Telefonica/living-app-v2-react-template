@@ -1,6 +1,6 @@
 """Environment import.
 
-Copyright (c) Telefonica Digital.
+Copyright (c) Telefónica Innovación Digital.
 Living Apps QA Team <qacdcolivingapps@telefonica.com>
 """
 

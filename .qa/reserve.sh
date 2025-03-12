@@ -8,8 +8,6 @@ USER=${USER:-la_shop_user_0}
 ENV=${ENV:-dev}
 
 # Extract data from JSON file
-USER=$(echo "$USER" | xargs)  # Trim leading and trailing whitespace
-echo ".\"sdf-mock\".lines.\"${USER}\""
 DATA=$(jq -r ".\"sdf-mock\".lines.\"${USER}\"" $WD/tests/acceptance/settings/common-sdf-mock.json)
 
 # Check if DATA is null

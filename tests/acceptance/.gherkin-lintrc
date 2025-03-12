@@ -1,0 +1,19 @@
+{
+  "no-files-without-scenarios" : "on",
+  "no-unnamed-features": "on",
+  "no-unnamed-scenarios": "on",
+  "no-dupe-feature-names": "on",
+  "no-partially-commented-tag-lines": "on",
+  "indentation": ["on", {"Feature": 0, "given": 4, "when": 5, "then": 5, "and": 6, "Examples": 4,
+                         "Background": 2, "scenario tag": 2, "Scenario": 2, "example": 10,
+                         "feature tag": 0, "but": 6}],
+  "no-trailing-spaces": "on",
+  "new-line-at-eof": ["on", "yes"],
+  "no-empty-file": "on",
+  "no-scenario-outlines-without-examples": "on",
+  "no-duplicate-tags": "off",
+  "no-background-only-scenario": "on",
+  "no-empty-background": "on",
+  "no-dupe-scenario-names": ["on", "in-feature"],
+  "no-restricted-patterns": ["on", {"Global": ["I set a breakpoint"]}]
+}

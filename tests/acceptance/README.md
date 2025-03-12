@@ -35,6 +35,7 @@ enabled: true
 version: v3.26_Zorita
 Build: Release
 labels: ft,regression
+Language: es
 ```
    
 ### Choose the runner:

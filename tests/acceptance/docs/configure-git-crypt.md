@@ -9,7 +9,7 @@
       brew install git-crypt
    ```
 
-2. Add ".gitattributes" to the project root (This file is already included in template - Check that all secrets files are included)
+2. Add ".gitattributes" to the project inside tests/acceptance
    ```
       **/settings/*private*.json filter=git-crypt diff=git-crypt
       **/settings/**/*private*.json filter=git-crypt diff=git-crypt

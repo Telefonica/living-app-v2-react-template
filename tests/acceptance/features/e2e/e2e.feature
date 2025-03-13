@@ -1,4 +1,4 @@
-@e2e
+@e2e @baseline+
 Feature: [E2E] PAGE NAME: Feature description
 
     Actions Before the feature:

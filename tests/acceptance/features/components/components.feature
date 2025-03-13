@@ -1,4 +1,4 @@
-@component @dev
+@component @dev @baseline+
 Feature: [COMPONENT] PAGE NAME: Feature description
 
   @jira.link.tests.LIVINGAPPS-XXXXX

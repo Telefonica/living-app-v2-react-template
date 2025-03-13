@@ -36,16 +36,19 @@ docker-build: ## Build QA services in Docker
 
 docker-run-tests: docker-build ## Run QA tests in Docker
 	@docker compose -f "$(DOCKER_FILE)" run --rm \
-		-e USER_TEST="$(USER_TEST)" docker-tests
+		-e USER_TEST="$(USER_TEST)" acceptance-tests
 
 # Local
 .PHONY: local-env install-requirements
 
-local-env: ## Start Selenoid service
+local-env: ## Start Selenoid service and mock server
 	@docker compose -f "$(DOCKER_FILE)" up selenoid mock-server
 
-install-requirements: ## Install requirements
+install-requirements: env-vars-export ## Install requirements
 	@pip install -r requirements.txt
+
+env-vars-export: ## Export environment variables
+	@export $(cat .env.local | xargs)
 
 # Linter
 .PHONY: lint ruff gherkin-lint npm-install-required

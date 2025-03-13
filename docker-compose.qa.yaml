@@ -108,7 +108,7 @@ services:
     volumes:
       - ./tests/acceptance/:/app
 
-  docker-tests:
+  acceptance-tests:
     <<: *la_qa_env
     environment:
       - TEST_ENV=${TEST_ENV:-es-dev}

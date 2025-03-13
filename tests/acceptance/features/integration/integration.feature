@@ -1,4 +1,4 @@
-@integration
+@integration @baseline+
 Feature: [INTEGRATION] PAGE NAME: Feature description
 
   @jira.link.tests.LIVINGAPPS-XXXXX

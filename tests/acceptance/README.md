@@ -8,6 +8,7 @@
 5. [Check Results in Jira](#check-results-in-jira)
 6. [Generate Release Report](#generate-release-report)
 7. [QA Commons](https://github.com/Telefonica/living-apps-qa-common)
+8. [Reports](./docs/reports.md)
 
 ## Run Local Tests
 ### Set local-toolium options:
@@ -39,7 +40,7 @@ Language: es
 ```
    
 ### Choose the runner:
-![local run](./docs/images/local-run.png)
+![local run](docs/images/local-run.png)
 * Scenario: Run selected Scenario name.
 * Feature: Run open Feature.
 * Tags: Run any selected tag. Jira ids, could run both ways @jira.QALAGLOB-123 or QALAGLOB-123
@@ -152,7 +153,7 @@ laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p
     ```
    
 ### Choose the runner:
-![local run](./docs/images/local-run.png)
+![local run](docs/images/local-run.png)
 * Scenario: Run selected Scenario name.
 * Feature: Run open Feature.
 * Tags: Run any selected tag. Jira ids, could run both ways @jira.QALAGLOB-123 or QALAGLOB-123

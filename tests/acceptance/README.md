@@ -121,58 +121,6 @@ cd tests/acceptance
 laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p regression -b Release
 ```
 
-## Run Local Tests
-
-### Set local-toolium options:
-   1. Set if the execution is headless or not
-    ```
-    [Driver]
-    headless: false
-    ```
-   2. Run inside local chrome or selenoid chrome (Selenoid must be up: **make local-env**)
-    ```
-    [Server]
-    enabled: false
-    ```
-
-   3. Save images (Only save images inside selenoid with headless mode):
-    ```
-    [VisualTests]
-    save: true
-    ```
-   4. Upload results to jira
-    ```
-    [Jira]
-    enabled: true
-
-    [JiraExecution]
-    version: v3.26_Zorita
-    Build: Release
-    labels: ft,regression
-    Language: es
-    ```
-   
-### Choose the runner:
-![local run](docs/images/local-run.png)
-* Scenario: Run selected Scenario name.
-* Feature: Run open Feature.
-* Tags: Run any selected tag. Jira ids, could run both ways @jira.QALAGLOB-123 or QALAGLOB-123
-* Folders: Update launch file, to include expected path or run all folders. <br>
-  ```
-  Replace with expected feature path:
-  ${workspaceFolder}/tests/acceptance/features/
-  ```
-* Python script: Open expected script.<br>
-  **Include expected args in launch file**
-* LAQACommons - script: Include qa commons tool name and expected args
-  ```
-  "args": [
-    "jira-queries"
-  ],
-  ```
-
-**Press F5 in keyboard to RUN the launcher**
-
 ## Generate Release Report
 [QA Reporter](http://qacdco.hi.inet/qacdco-reporter) # VPN Required <br>
 **Test Executions -> Click Generate**

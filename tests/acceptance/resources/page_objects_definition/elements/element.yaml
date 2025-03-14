@@ -1,0 +1,7 @@
+Element:
+
+  - PageElement :
+      Name            : demo_element
+      Locator-Type    : CSS_SELECTOR
+      Locator-Value   : .demo-element
+      Wait-For-Loaded : True

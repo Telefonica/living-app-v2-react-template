@@ -1,6 +1,0 @@
-**/settings/*private*.json filter=git-crypt diff=git-crypt
-**/settings/**/*private*.json filter=git-crypt diff=git-crypt
-**/settings/**/properties/*private*.json filter=git-crypt diff=git-crypt
-**/resources/kubeconfigs/* filter=git-crypt diff=git-crypt
-**/settings/*toolium.cfg filter=git-crypt diff=git-crypt
-.gitattributes !filter !diff

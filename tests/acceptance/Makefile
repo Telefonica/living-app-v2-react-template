@@ -1,56 +1,74 @@
 .ONESHELL:
 
-docker-file = ../../docker-compose.yaml -f ../../docker-compose.qa.yaml
-nexus-user = ${NEXUS_LA_USER}
-nexus-password = ${NEXUS_LA_PASSWORD}
-component = Generic
+# Variables
+DOCKER_FILE    = ../../docker-compose.qa.yaml
+FEATURES       = ./tests/acceptance/features
+GHERKIN_LINTRC = ./tests/acceptance/.gherkin-lintrc
+REPORT_XML     = ./_output/reports
+
+JIRA_COMPONENT  = #TODO
+JIRA_TOKEN     ?= $(JIRA_TOKEN)
+TOOLIUM_CONFIG := $(shell test -f "./settings/local-toolium.cfg" && echo "./settings/local-toolium.cfg" || echo "./settings/toolium.cfg")
+JIRA_VERSION   := $(shell grep '^version:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+JIRA_BUILD     := $(shell grep '^Build:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+JIRA_LANGUAGE  := $(shell grep '^Language:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+
 
 .EXPORT_ALL_VARIABLES:
 
+# Help
 .PHONY: help
-help: ## Show this help
-	@echo "usage: make [target] ..."
-	@echo ""
-	@echo "targets:"
-	@egrep '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+help:
+	@echo "Usage: make [target] ..."
+	@echo "Targets:"
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 
-# CI commands
-.PHONY: docker-clean
-docker-clean:
-	docker compose -f ${docker-file} down -v
+# Docker
+.PHONY: docker-clean docker-build docker-run-tests selenoid
 
-.PHONY: docker-build ## Docker build
-docker-build:
-	docker compose -f ${docker-file} build --build-arg NEXUS_LA_USER=${nexus-user} --build-arg NEXUS_LA_PASSWORD=${nexus-password}
+docker-clean: ## Clean up Docker environment
+	@docker compose -f "$(DOCKER_FILE)" down -v
 
-.PHONY: docker-run-tests ## Docker run tests
-docker-run-tests:
-	docker compose -f ${docker-file} run --rm docker-tests
+docker-build: ## Build QA services in Docker
+	@docker compose -f "$(DOCKER_FILE)" build \
+		--build-arg NEXUS_LA_USER="$(NEXUS_LA_USER)" \
+		--build-arg NEXUS_LA_PASSWORD="$(NEXUS_LA_PASSWORD)"
 
-.PHONY: selenoid
-selenoid:
-	docker compose -f ${docker-file} up selenoid
+docker-run-tests: docker-build ## Run QA tests in Docker
+	@docker compose -f "$(DOCKER_FILE)" run --rm \
+		-e USER_TEST="$(USER_TEST)" acceptance-tests
 
-.PHONY: ruff-lint
-ruff:
-	ruff check --fix
+# Local
+.PHONY: local-env install-requirements
 
-.PHONY: get-regression-failed
-regression-failed:
-	@JIRA_VERSION=$$(grep -oP '(?<=^version: ).*' ./settings/local-toolium.cfg) && \
-	laqacommons jira-queries -qt failed -v $${JIRA_VERSION} -c ${component} -p regression -b Release
+local-env: ## Start Selenoid service and mock server
+	@docker compose -f "$(DOCKER_FILE)" up selenoid mock-server
 
-.PHONY: get-regression-not-executed
-regression-not-executed:
-	@JIRA_VERSION=$$(grep -oP '(?<=^version: ).*' ./settings/local-toolium.cfg) && \
-	laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p regression -b Release
+install-requirements: env-vars-export ## Install requirements
+	@pip install -r requirements.txt
 
-.PHONY: get-smoke-failed
-smoke-failed:
-	@JIRA_VERSION=$$(grep -oP '(?<=^version: ).*' ./settings/local-toolium.cfg) && \
-	laqacommons jira-queries -qt failed -v $${JIRA_VERSION} -c ${component} -p smoke -b Release
+env-vars-export: ## Export environment variables
+	@export $(cat .env.local | xargs)
 
-.PHONY: get-smoke-not-executed
-smoke-not-executed:
-	@JIRA_VERSION=$$(grep -oP '(?<=^version: ).*' ./settings/local-toolium.cfg) && \
-	laqacommons jira-queries -qt not_executed -v $${JIRA_VERSION} -c ${component} -p smoke -b Release
+# Linter
+.PHONY: lint ruff gherkin-lint npm-install-required
+
+ruff: ## Run Ruff linter
+	@ruff check --fix
+
+gherkin-lint: npm-install-required ## Run Gherkin linter
+	@cd ../../ && node ./node_modules/.bin/gherkin-lint -c "$(GHERKIN_LINTRC)" "$(FEATURES)"
+
+npm-install-required:
+	@cd ../../ && npm install && npm install gherkin-lint --save-dev
+
+# Jira Queries
+.PHONY: jira-query upload-jira-xml
+
+jira-queries: ## Run Jira queries (usage: make jira-query status=[passed|failed|bugs|custom|impeded|not_executed] priority=[regression|smoke|sanity])
+	@test -n "$(status)" || { echo "Error: status is required (passed|failed|bugs|custom|impeded|not_executed)"; exit 1; }
+	@test -n "$(priority)" || { echo "Error: priority is required (regression|smoke|sanity)"; exit 1; }
+	@laqacommons jira-queries -t "$(JIRA_TOKEN)" -qt "$(status)" -v "$(JIRA_VERSION)" -c "$(JIRA_COMPONENT)" -p "$(priority)" -b "$(JIRA_BUILD)" -sp "$(JIRA_EXTRA_PARAM)"
+
+upload-jira-xml: ## Upload Jira results from XML files
+	@find $(REPORT_XML) -name '*.xml' -exec toolium jira-report-xml -x {} \;

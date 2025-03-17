@@ -2,3 +2,5 @@
 
 Living Apps QA Team <qacdcolivingapps@telefonica.com>
 """
+
+from common.steps import *

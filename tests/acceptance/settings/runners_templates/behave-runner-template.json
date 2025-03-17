@@ -2,6 +2,18 @@
     {
       "behave_features": {{ features }},
       "behave_tags": [
+        {% if "br" in environment %}
+        "~@aura",
+        "~@tmp_br_skip",
+        "~@vocal_interaction",
+        "~@T&C",
+        {% endif %}
+        {% if custom_tag != "no_tag" %}
+        {% set tags_list = custom_tag.split(';') %}
+        {% for tag in tags_list if tag != "no_tag" %}
+        "{{ tag }}",
+        {% endfor %}
+        {% endif %}
         "~@skip",
         "~@manual",
         "~@slow",
@@ -10,14 +22,6 @@
         "~@future",
         "~@deprecated",
         "~@jira.dv.*",
-        {% if custom_tag != "no_tag" %}
-        {% set tags_list = custom_tag.split(';') %}
-        {% for tag in tags_list %}
-        {% if tag != "no_tag" %}
-        "{{ tag }}",
-        {% endif %}
-        {% endfor %}
-        {% endif %}
         "~@dv.*"
       ],
       "behave_args": [

@@ -12,7 +12,7 @@ TOOLIUM_CONFIG := $(shell test -f "./settings/local-toolium.cfg" && echo "./sett
 JIRA_VERSION   := $(shell grep '^version:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 JIRA_BUILD     := $(shell grep '^Build:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 JIRA_LANGUAGE  := $(shell grep '^Language:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
-
+LINE           := $(shell grep '^user_test:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 
 .EXPORT_ALL_VARIABLES:
 
@@ -72,3 +72,11 @@ jira-queries: ## Run Jira queries (usage: make jira-query status=[passed|failed|
 
 upload-jira-xml: ## Upload Jira results from XML files
 	@find $(REPORT_XML) -name '*.xml' -exec toolium jira-report-xml -x {} \;
+
+# Lines
+.PHONY: reserve-line release-line
+reserve-line:
+	@laqacommons management --reserve --line "${LINE}"
+
+release-line:
+	@laqacommons management --release --line "${LINE}"

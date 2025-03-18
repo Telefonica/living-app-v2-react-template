@@ -9,5 +9,29 @@
 * [Reports](https://github.com/Telefonica/living-apps-qa-common/wiki/Reports)
 * [laqacommons](https://github.com/Telefonica/living-apps-qa-common)
 
-## Who to ask?
+## Living Apps QA Team
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/jruizg23.png" alt="Javier Ruiz García" width="100"/>
+      <p><a href="https://github.com/jruizg23">Javier Ruiz</a></p>
+    </td>
+    <td align="center">
+      <img src="https://github.com/promans718.png" alt="Patricia Roman Sanchez" width="100"/>
+      <p><a href="https://github.com/promans718">Patricia Roman</a></p>
+    </td>
+    <td align="center">
+      <img src="https://github.com/rnn245.png" alt="Roberto Navarro" width="100"/>
+      <p><a href="https://github.com/rnn245">Roberto Navarro</a></p>
+    </td>
+    <td align="center">
+      <img src="https://github.com/mguerrerof.png" alt="Manuel Guerrero" width="100"/>
+      <p><a href="https://github.com/mguerrerof">Manuel Guerrero</a></p>
+    </td>
+    <td align="center">
+      <img src="https://github.com/Rcatala18.png" alt="Rafael Catalá" width="100" />
+      <p><a href="https://github.com/Rcatala18">Rafael Catalá</a></p>
+    </td>
+  </tr>
+</table>

@@ -1,0 +1,46 @@
+{
+  "sdf-mock": {
+    "base_username_ci": "user-ci", 
+    "url": "https://sdf.apps.ocp-epg.tid.es/api/v1/sdf/",
+    "user": "telefonica",
+    "password": "",
+    "redirect-uri": "https://globalmakermedia.blob.core.windows.net/living-apps/latest/la-generic/web/_v.json",
+    "lines": {
+      "user_legado_javi": {
+        "phone_number": "+34959418833",
+        "user_id": "la9999903",
+        "uid": "49087093B"
+      },
+      "user_telco_javi": {
+        "phone_number": "+34959418832",
+        "user_id": "la9999902",
+        "uid": "49087092X"
+      },
+      "user_telco_rober": {
+        "user_id": "la9999915",
+        "phone_number": "+34959418845",
+        "uid": "57855795P"
+      },
+      "user_telco_patri": {
+        "user_id": "la9999917",
+        "phone_number": "+34959418848",
+        "uid": "81168266R"
+      },
+      "user_telco_rafa": {
+        "user_id": "la9999923",
+        "phone_number": "+34911494997",
+        "uid": "49087148S"
+      },
+      "user_telco_manu": {
+        "user_id": "la9999906",
+        "phone_number": "+34959418836",
+        "uid": "49087096Z"
+      },
+      "user-ci-0": {
+        "user_id": "XXXXXXXX_0",
+        "phone_number": "+34XXXXXXXXX",
+        "uid": "XXXXXXXXX"
+      }
+    }
+  }
+}

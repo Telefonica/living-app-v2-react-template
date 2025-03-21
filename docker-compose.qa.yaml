@@ -144,12 +144,12 @@ services:
       - -c
       - |
         laqacommons review-duplicated-ids -f ${FEATURES_FOLDER} 2> /app/errors_1.txt
-        if [ -s /app/errors_1.txt]; then
+        if [ -s /app/errors_1.txt ]; then
           cat /app/errors_1.txt
           exit 1
         fi
         laqacommons list-jira-bugs -f ${FEATURES_FOLDER} -s "'Closed','Resolved'" 2> /app/errors_2.txt
-        if [ -s /app/errors_2.txt]; then
+        if [ -s /app/errors_2.txt ]; then
           cat /app/errors_2.txt
           exit 1
         fi

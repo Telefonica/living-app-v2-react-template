@@ -21,6 +21,9 @@ function defineConfig({ mode }) {
   return {
     server: {
       port: 3000,
+      watch : {
+        ignored: ['**/.venv/**']
+      }
     },
     build: {
       outDir: 'build',

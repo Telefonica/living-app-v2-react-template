@@ -1,7 +1,7 @@
 {
   "base_properties_file": [
     "common-private-properties.json",
-    "common-sdf-mock.json",
+    "sdf-mock-properties.json",
     "common-living-apps.json"
   ],
   "mock_server": {

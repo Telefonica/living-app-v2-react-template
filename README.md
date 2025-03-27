@@ -1,6 +1,7 @@
 <p align="right">
   <img src="https://flat.badgen.net/badge/LivingApps/%20v2.0/pink"/>
   <img src="https://img.shields.io/badge/Node.js-20-green"/>
+  <img src="https://flat.badgen.net/badge/Python/%203.11/blue"/>
 </p>
 
 # Getting Started with Living Apps 2.0

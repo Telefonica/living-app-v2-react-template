@@ -1,3 +1,9 @@
+"""Living App V2 environment file.
+
+Copyright (c) Telefónica Innovación Digital.
+Living Apps QA Team <qacdcolivingapps@telefonica.com>
+"""
+
 from laqacommons.steps.environment import (
     after_all as qa_commons_after_all,
 )

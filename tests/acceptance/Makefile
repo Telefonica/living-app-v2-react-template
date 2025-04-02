@@ -6,15 +6,13 @@ FEATURES       = ./tests/acceptance/features
 GHERKIN_LINTRC = ./tests/acceptance/.gherkin-lintrc
 REPORT_XML     = ./_output/reports
 
-JIRA_COMPONENT  = #TODO
-JIRA_TOKEN     ?= $(JIRA_TOKEN)
+MAKE_JIRA_COMPONENT  = #TODO
+MAKE_JIRA_TOKEN     ?= $(MAKE_JIRA_TOKEN)
 TOOLIUM_CONFIG := $(shell test -f "./settings/local-toolium.cfg" && echo "./settings/local-toolium.cfg" || echo "./settings/toolium.cfg")
-JIRA_VERSION   := $(shell grep '^version:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
-JIRA_BUILD     := $(shell grep '^Build:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
-JIRA_LANGUAGE  := $(shell grep '^Language:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+MAKE_JIRA_VERSION   := $(shell grep '^version:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+MAKE_JIRA_BUILD     := $(shell grep '^Build:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
+MAKE_JIRA_LANGUAGE  := $(shell grep '^Language:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 LINE           := $(shell grep '^user_test:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
-
-.EXPORT_ALL_VARIABLES:
 
 # Help
 .PHONY: help
@@ -68,7 +66,7 @@ npm-install-required:
 jira-queries: ## Run Jira queries (usage: make jira-query status=[passed|failed|bugs|custom|impeded|not_executed] priority=[regression|smoke|sanity])
 	@test -n "$(status)" || { echo "Error: status is required (passed|failed|bugs|custom|impeded|not_executed)"; exit 1; }
 	@test -n "$(priority)" || { echo "Error: priority is required (regression|smoke|sanity)"; exit 1; }
-	@laqacommons jira-queries -t "$(JIRA_TOKEN)" -qt "$(status)" -v "$(JIRA_VERSION)" -c "$(JIRA_COMPONENT)" -p "$(priority)" -b "$(JIRA_BUILD)" -sp "$(JIRA_EXTRA_PARAM)"
+	@laqacommons jira-queries -t "$(MAKE_JIRA_TOKEN)" -qt "$(status)" -v "$(MAKE_JIRA_VERSION)" -c "$(MAKE_JIRA_COMPONENT)" -p "$(priority)" -b "$(MAKE_JIRA_BUILD)" -sp "$(MAKE_JIRA_EXTRA_PARAM)"
 
 upload-jira-xml: ## Upload Jira results from XML files
 	@find $(REPORT_XML) -name '*.xml' -exec toolium jira-report-xml -x {} \;

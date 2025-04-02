@@ -16,7 +16,8 @@
         "~@future",
         "~@deprecated",
         "~@jira.dv.*",
-        "~@dv.*"
+        "~@dv.*",
+        "~@dev"
       ],
       "behave_args": [
         "--junit",

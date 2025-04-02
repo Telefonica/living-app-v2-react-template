@@ -14,8 +14,6 @@ JIRA_BUILD     := $(shell grep '^Build:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 JIRA_LANGUAGE  := $(shell grep '^Language:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 LINE           := $(shell grep '^user_test:' "$(TOOLIUM_CONFIG)" | cut -d ' ' -f 2)
 
-.EXPORT_ALL_VARIABLES:
-
 # Help
 .PHONY: help
 help:

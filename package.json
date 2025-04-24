@@ -48,5 +48,11 @@
     "vite-plugin-html": "3.2.2",
     "vite-plugin-svgr": "4.3.0",
     "vite-tsconfig-paths": "5.1.4"
-  }
+  },
+  "eslintConfig": {
+    "extends": [
+      "./node_modules/@telefonica/living-apps-eslint-config/.eslintrc.js"
+    ]
+  },
+  "prettier": "./node_modules/@telefonica/living-apps-eslint-config/.prettierrc.js"
 }

@@ -1,0 +1,16 @@
+name: SDK RC Branch
+on:
+  workflow_dispatch:
+    inputs:
+      core-web-pr:
+        description: |
+          id of the PR that triggered the SDK build (core-web)
+          e.g. 417
+        required: true
+        type: number
+
+jobs:
+  la-sdk-rc:
+    uses: telefonica/living-apps-gh-actions/.github/workflows/sdk-rc-branch.yaml@master
+    with:
+      core-web-pr: ${{ github.event.inputs.core-web-pr }}

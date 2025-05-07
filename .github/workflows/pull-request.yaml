@@ -1,4 +1,5 @@
-name: pull request
+name: Pull Requests CI
+
 on: [pull_request]
 
 jobs:

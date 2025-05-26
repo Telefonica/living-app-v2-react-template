@@ -15,7 +15,7 @@ Ts style guide:
 - prefer `type` for types. Do not use `interface`.
 - do not use `enums` in typescript, use string literals like `'value' | 'anotherValue'`.
 - do not use return type annotations for functions.
-- use `React.componentProps<Component>` for getting component props type.
+- use `React.ComponentProps<Component>` for getting component props type.
 - do not import types from `react` package, use them directly as: `React.ReactNode`.
 
 Css style guide:

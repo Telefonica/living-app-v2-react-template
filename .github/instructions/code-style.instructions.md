@@ -34,7 +34,7 @@ Testing style guide:
 - the first describe block should be the name of the symbol being tested,
   if its a component: "<ComponentName />"; if its a function: "functionName()"; if its and object: "objectName {}".
 - use playwright for e2e testing.
-- e2e testing files should be named `*.splec.ts`.
+- e2e testing files should be named `*.spec.ts`.
 - e2e testing files should be placed in the `tests/integration` folder.
 - e2e testing files follow this naming pattern: `{screenName}.{featureName}.spec.ts`; example: `home.navigation.spec.ts`.
 - use playwright fixtures for reducing boilerplate code.

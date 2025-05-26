@@ -1,0 +1,36 @@
+Js style guide:
+
+- use functional components, functions and modules. do not use classes.
+- do not use `this` keyword.
+- use single quotes for strings.
+- use `const` for functions and variables.
+- prefer `export` to `export default`.
+- use `import` for importing modules.
+- use `import type { }` for importing types.
+- use `import { } from './file'` for importing from local files.
+- use `import { } from 'module'` for importing from node modules.
+
+Ts style guide:
+
+- prefer `type` for types. Do not use `interface`.
+- do not use `enums` in typescript, use string literals like `'value' | 'anotherValue'`.
+- do not use return type annotations for functions.
+
+Css style guide:
+
+- use CSS modules for styling.
+- css files should be named `*.module.css`.
+- import css files like this: `import styles from "./{file}.module.css"`.
+
+Testing style guide:
+
+- use jest for unit testing.
+- testing files should be named `*.test.ts` or `*.test.tsx` if its a component.
+- use `it` for test cases.
+- use `describe` for grouping test cases.
+- use `jest.mock()` for mocking modules.
+- use playwright for e2e testing.
+- e2e testing files should be named `*.splec.ts`.
+- e2e testing files should be placed in the `tests/integration` folder.
+- e2e testing files follow this naming pattern: `{screenName}.{featureName}.spec.ts`; example: `home.navigation.spec.ts`.
+- use playwright fixtures for reducing boilerplate code.

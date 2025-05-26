@@ -15,6 +15,8 @@ Ts style guide:
 - prefer `type` for types. Do not use `interface`.
 - do not use `enums` in typescript, use string literals like `'value' | 'anotherValue'`.
 - do not use return type annotations for functions.
+- use `React.componentProps<Component>` for getting component props type.
+- do not import types from `react` package, use them directly as: `React.ReactNode`.
 
 Css style guide:
 
@@ -29,6 +31,8 @@ Testing style guide:
 - use `it` for test cases.
 - use `describe` for grouping test cases.
 - use `jest.mock()` for mocking modules.
+- the first describe block should be the name of the symbol being tested,
+  if its a component: "<ComponentName />"; if its a function: "functionName()"; if its and object: "objectName {}".
 - use playwright for e2e testing.
 - e2e testing files should be named `*.splec.ts`.
 - e2e testing files should be placed in the `tests/integration` folder.

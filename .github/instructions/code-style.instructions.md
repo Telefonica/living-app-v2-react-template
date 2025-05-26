@@ -35,7 +35,7 @@ Testing style guide:
   if its a component: "<ComponentName />"; if its a function: "functionName()"; if its and object: "objectName {}".
 - use playwright for e2e testing.
 - in jest, always use `screen.getByXX()` for querying elements.
-- in jest, always prefer `screen.getByRole()` over `screen.getByTestId()`.
+- in jest, prefer `screen.getByRole()` to `screen.getByTestId()`.
 - in jest, testing a component, include first a test `it('renders: match snapshot', () => { ... })` to check if the component renders without crashing.
   using `component.toMatchSnapshot()`
 - e2e testing files should be named `*.spec.ts`.

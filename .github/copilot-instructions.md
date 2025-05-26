@@ -42,3 +42,8 @@ Testing style guide:
 - e2e testing files should be placed in the `tests/integration` folder.
 - e2e testing files follow this naming pattern: `{screenName}.{featureName}.spec.ts`; example: `home.navigation.spec.ts`.
 - use playwright fixtures for reducing boilerplate code.
+
+on: code-edit
+run: npm run lint:fix
+run: npm run prettier:write
+run: npm run build

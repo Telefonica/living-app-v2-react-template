@@ -1,13 +1,18 @@
 {
-    "chrome": {
-        "default": "128.0",
-        "versions": {
-            "128.0": {
-                "image": "selenoid/chrome:128.0",
-                "port": "4444",
-                "path": "/",
-                "env" : ["LANG=es_ES.UTF-8", "LANGUAGE=es:es", "LC_ALL=es_ES.UTF-8", "TZ=Europe/Madrid"]
-            }
-        }
+  "chrome": {
+    "default": "128.0",
+    "versions": {
+      "128.0": {
+        "image": "selenoid/chrome:128.0",
+        "port": "4444",
+        "path": "/",
+        "env": [
+          "LANG=es_ES.UTF-8",
+          "LANGUAGE=es:es",
+          "LC_ALL=es_ES.UTF-8",
+          "TZ=Europe/Madrid"
+        ]
+      }
     }
+  }
 }

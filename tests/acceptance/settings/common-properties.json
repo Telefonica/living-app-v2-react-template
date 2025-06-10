@@ -39,7 +39,7 @@
     "name": "aura"
   },
   "metrics": {
-    "app_id": "41ba08de-c63a-4899-b4bb-788b1e14306c",
+    "app_id": "3e0f63b4-21e3-44c5-b55c-01a404825485",
     "host": "https://api.applicationinsights.io",
     "endpoint": "/v1/apps/{app_id}/query"
   },

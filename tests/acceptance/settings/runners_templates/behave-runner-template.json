@@ -1,49 +1,54 @@
 [
-    {
-      "behave_features": {{ features }},
-      "behave_tags": [
-        {% if custom_tag != "no_tag" %}
-        {% set tags_list = custom_tag.split(';') %}
-        {% for tag in tags_list if tag != "no_tag" %}
-        "{{ tag }}",
-        {% endfor %}
-        {% endif %}
-        "~@skip",
-        "~@manual",
-        "~@slow",
-        "~@not_dev",
-        "~@pre",
-        "~@future",
-        "~@deprecated",
-        "~@jira.dv.*",
-        "~@dv.*",
-        "~@dev"
-      ],
-      "behave_args": [
-        "--junit",
-        "--junit-directory",
-        "_output/reports",
-        "-s"
-      ],
-      "Server_enabled": true,
-      "Server_host": "selenoid",
-      "Server_port": "4444",
-      "Driver_headless": true,
-      "Driver_type": "chrome",
-      "TestExecution_environment": "{{ environment }}",
+  {
+    "behave_features": {{ features }},
+    "behave_tags": [
       {% if "br" in environment %}
-      "TestExecution_language": "br-br",
-      "JiraExecution_Language": "pt",
-      {% else %}
-      "TestExecution_language": "es-es",
-      "JiraExecution_Language": "es",
+      "~@tv",
+      "~@aura",
+      "~@vocal_interaction",
       {% endif %}
-      {% if jira_version not in ["CI", "no_version", ""] %}
-      "TestExecution_la_version": "{{ jira_version[1:] | replace('_', '.0-', 1) | lower }}",
-      {% else %}
-      "TestExecution_la_version": "latest",
+      {% if custom_tag != "no_tag" %}
+      {% set tags_list = custom_tag.split(';') %}
+      {% for tag in tags_list if tag != "no_tag" %}
+      "{{ tag }}",
+      {% endfor %}
       {% endif %}
-      "JiraExecution_labels": "ft,{{ runner_type }}",
-      "TestExecution_auto_retry": false
-    }
+      "~@skip",
+      "~@manual",
+      "~@future",
+      "~@deprecated",
+      "~@no_automatable",
+      "~@jira.dv.*",
+      "~@dev",
+      "~@dv.*"
+    ],
+    "behave_args": [
+      "--junit",
+      "--junit-directory",
+      "_output/reports",
+      "-s"
+    ],
+    "Driver_headless": true,
+    "Driver_type": "chrome",
+    "Capabilities_version": "112.0",
+    "Capabilities_enableVideo": false,
+    {% if "br" in environment %}
+    "TestExecution_language": "pt-br",
+    "JiraExecution_Language": "pt",
+    {% else -%}
+    "TestExecution_language": "es-es",
+    "JiraExecution_Language": "es",
+    {% endif %}
+    {% if jira_version not in ["CI", "no_version", ""] %}
+    "TestExecution_la_version": "{{ jira_version[1:] | replace('_', '.0-', 1) | lower }}",
+    {% else %}
+    "TestExecution_la_version": "latest",
+    {% endif %}
+    "TestExecution_environment": "{{ environment }}",
+    "Server_enabled": true,
+    "Server_host": "selenoid",
+    "Server_port": "4444",
+    "Server_video_enabled": false,
+    "TestExecution_mock_pre_options": false
+  }
 ]

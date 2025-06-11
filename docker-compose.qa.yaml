@@ -5,21 +5,21 @@ networks:
 
 services:
   chrome:
-    image: selenoid/chrome:112.0
+    image: harbor.tid.es/proxy_cache/selenoid/chrome:112.0
     networks:
       - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid_video:
-    image: selenoid/video-recorder:latest-release
+    image: harbor.tid.es/proxy_cache/selenoid/video-recorder:latest-release
     networks:
       - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid-ui:
-    image: aerokube/selenoid-ui:latest
+    image: harbor.tid.es/proxy_cache/aerokube/selenoid-ui:latest
     networks:
       - qa-la-net
     ports:
@@ -27,7 +27,7 @@ services:
     command: [ "--selenoid-uri", "http://selenoid:4444" ]
 
   selenoid:
-    image: aerokube/selenoid:latest
+    image: harbor.tid.es/proxy_cache/aerokube/selenoid:latest
     networks:
       - qa-la-net
     volumes:
@@ -82,7 +82,7 @@ services:
       dockerfile: tests/tools/mock/Dockerfile
 
   mock-server-new:
-    image: mockserver/mockserver
+    image: harbor.tid.es/proxy_cache/mockserver/mockserver:latest
     networks:
       - qa-la-net
     environment:

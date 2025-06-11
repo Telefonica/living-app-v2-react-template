@@ -13,4 +13,5 @@ WORKDIR /app
 # Install packages with pip
 #=================
 COPY ./tests/acceptance/requirements.txt /tmp/
-RUN pip install -r /tmp/requirements.txt
+RUN pip install -r /tmp/requirements.txt && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*

@@ -3,7 +3,10 @@
     "todo-app": {
       "name": "todo-app",
       "build_url_release": "https://globalmakermedia.blob.core.windows.net/living-apps/{la_version}/la-generic/web/index.html",
-      "build_url_pr": "https://globalmakermedia.blob.core.windows.net/web-pocs/PRs/la-generic-{pr_number}/build/index.html"
+      "build_url_pr": "https://globalmakermedia.blob.core.windows.net/web-pocs/PRs/la-generic-{pr_number}/build/index.html",
+      "mock_server_url": "http://mock-server:8889",
+      "mock_server_new_url": "http://mock-server-new:8091",
+      "config_url": "http://mock-server:8889/ei-config.json"
     }
   }
 }

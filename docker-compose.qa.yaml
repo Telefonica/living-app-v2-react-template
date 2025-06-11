@@ -5,21 +5,21 @@ networks:
 
 services:
   chrome:
-    image: selenoid/chrome:112.0
+    image: harbor.tid.es/proxy_cache/selenoid/chrome:112.0
     networks:
       - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid_video:
-    image: selenoid/video-recorder:latest-release
+    image: harbor.tid.es/proxy_cache/selenoid/video-recorder:latest-release
     networks:
       - qa-la-net
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
   selenoid-ui:
-    image: aerokube/selenoid-ui:latest
+    image: harbor.tid.es/proxy_cache/aerokube/selenoid-ui:latest
     networks:
       - qa-la-net
     ports:
@@ -27,7 +27,7 @@ services:
     command: [ "--selenoid-uri", "http://selenoid:4444" ]
 
   selenoid:
-    image: aerokube/selenoid:latest
+    image: harbor.tid.es/proxy_cache/aerokube/selenoid:latest
     networks:
       - qa-la-net
     volumes:
@@ -52,7 +52,6 @@ services:
       - "4444:4444"
     depends_on:
       - chrome
-      - selenoid-ui
 
   browsermob-proxy:
     image: browsermob_proxy
@@ -81,10 +80,20 @@ services:
     build:
       context: .
       dockerfile: tests/tools/mock/Dockerfile
-      args:
-        NEXUS_LA_USER: ${NEXUS_LA_USER}
-        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
-    working_dir: /app
+
+  mock-server-new:
+    image: harbor.tid.es/proxy_cache/mockserver/mockserver:latest
+    networks:
+      - qa-la-net
+    environment:
+      MOCKSERVER_LOG_LEVEL: DEBUG
+      MOCKSERVER_PROPERTY_FILE: /config/mockserver.properties
+    volumes:
+      - ./tests/tools/mock-server-new/mockserver.properties:/config/mockserver.properties
+    expose:
+      - "8091"
+    ports:
+      - "8091:8091"
 
   app:
     build:
@@ -95,61 +104,35 @@ services:
     ports:
       - "3000:3000"
 
-  la-qa-env: &la_qa_env
-    image: local/qa-la-env:latest
+  la-qa-py-env:
+    image: la-qa-py-env:latest
     build:
       context: .
       dockerfile: tests/acceptance/Dockerfile
       args:
-        NEXUS_LA_USER: ${NEXUS_LA_USER}
-        NEXUS_LA_PASSWORD: ${NEXUS_LA_PASSWORD}
+        NEXUS_LA_USER: "${NEXUS_LA_USER}"
+        NEXUS_LA_PASSWORD: "${NEXUS_LA_PASSWORD}"
     networks:
       - qa-la-net
     volumes:
       - ./tests/acceptance/:/app
-
-  acceptance-tests:
-    <<: *la_qa_env
+      - ./tests/acceptance/_output:/app/_output
     environment:
-      - TEST_ENV=${TEST_ENV:-es-dev}
-      - PRIORITY=${PRIORITY:-smoke}
+      - AUTORETRY=${AUTORETRY:-}
+      - DEMO_URL=${DEMO_URL:-}
+      - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
+      - JIRA_BUILD=${JIRA_BUILD:-}
+      - JIRA_COMPONENT=${JIRA_COMPONENT:-}
+      - JIRA_EXTRA_LABELS=${JIRA_EXTRA_LABELS:-}
       - JIRA_ISSUE=${JIRA_ISSUE:-no_issue}
-      - JIRA_VERSION=${JIRA_VERSION:-no_version}
-      - JIRA_BUILD=${JIRA_BUILD:-Release}
-      - JIRA_TOKEN=${JIRA_TOKEN}
-      - AUTORETRY=${AUTORETRY:-true}
+      - JIRA_QUERY=${JIRA_QUERY:-}
+      - JIRA_REPORT=${JIRA_REPORT:-}
+      - JIRA_TOKEN=${JIRA_TOKEN:-}
+      - JIRA_VERSION=${JIRA_VERSION:-}
+      - LANGUAGE=${LANGUAGE:-}
+      - PR_NUMBER=${PR_NUMBER:-}
+      - PRIORITY=${PRIORITY:-}
       - TAGS=${TAGS:-no_tag}
-      - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
-      - USER_TEST=${USER_TEST:-user_ci}
-      - PR_NUMBER=${PR_NUMBER}
-      - DEMO_URL=${DEMO_URL}
-    command:
-      - /bin/bash
-      - -c
-      - |
-        wait-for-it --service mock-server:8889 --timeout=120 -- &&
-        wait-for-it --service selenoid:4444 --timeout=120 -- &&
-        ./scripts/run_tests.sh
-    depends_on:
-      - selenoid
-
-  features-checks:
-    <<: *la_qa_env
-    environment:
-      - JIRA_TOKEN=${JIRA_TOKEN}
-      - FEATURES_FOLDER=${FEATURES_FOLDER:-components}
-    working_dir: /app
-    command:
-      - /bin/bash
-      - -c
-      - |
-        laqacommons review-duplicated-ids -f ${FEATURES_FOLDER} 2> /app/errors_1.txt
-        if [ -s /app/errors_1.txt ]; then
-          cat /app/errors_1.txt
-          exit 1
-        fi
-        laqacommons list-jira-bugs -f ${FEATURES_FOLDER} -s "'Closed','Resolved'" 2> /app/errors_2.txt
-        if [ -s /app/errors_2.txt ]; then
-          cat /app/errors_2.txt
-          exit 1
-        fi
+      - TEST_ENV=${TEST_ENV:-}
+      - USER_TEST=${USER_TEST:-}
+    command: tail -f /dev/null

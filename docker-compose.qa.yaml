@@ -86,12 +86,12 @@ services:
     networks:
       - qa-la-net
     environment:
-      MOCKSERVER_LOG_LEVEL: DEBUG
+      MOCKSERVER_LOG_LEVEL: OFF
       MOCKSERVER_PROPERTY_FILE: /config/mockserver.properties
     volumes:
       - ./tests/tools/mock-server-new/mockserver.properties:/config/mockserver.properties
     expose:
-      - "8091"
+      - "8091/tcp"
     ports:
       - "8091:8091"
 

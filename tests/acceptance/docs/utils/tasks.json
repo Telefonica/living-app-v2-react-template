@@ -1,0 +1,97 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Reserve Line",
+      "type": "shell",
+      "command": "./.qa/reserve.sh",
+      "args": [],
+      "options": {
+        "env": {
+          "WD": "${workspaceFolder}",
+          "USER_LINE": "TO_BE_DEFINED"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Reserve line"
+    },
+    {
+      "label": "Jira Upload",
+      "type": "shell",
+      "command": "./.qa/jira-upload.sh",
+      "args": [
+        "FEATURE=${file}",
+        "WD=${workspaceFolder}/tests/acceptance"
+      ],
+      "options": {
+        "env": {
+          "FEATURE": "${file}",
+          "WD": "${workspaceFolder}/tests/acceptance",
+          "TP_NAME": "TO_BE_DEFINED",
+          "COMPONENT_NAME": "TO_BE_DEFINED"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "jira-upload"
+    },
+    {
+      "label": "Jira Upload - All Features",
+      "type": "shell",
+      "command": "./.qa/jira-upload-all-features.sh",
+      "options": {
+        "shell": {
+          "executable": "/bin/bash",
+          "args": [
+            "-c"
+          ]
+        },
+        "env": {
+          "TP_NAME": "TO_BE_DEFINED",
+          "COMPONENT_NAME": "TO_BE_DEFINED",
+          "PATH_FEATURES": "${workspaceFolder}/tests/acceptance/features",
+          "WD": "${workspaceFolder}/tests/acceptance"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "jira-upload-all-features",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true,
+        "revealProblems": "onProblem",
+        "echo": true,
+        "showReuseMessage": true,
+        "focus": false
+      }
+    },
+    {
+      "label": "Update QA commons",
+      "type": "shell",
+      "command": "./.qa/update-qacommons.sh",
+      "args": [],
+      "options": {
+        "env": {
+          "WF": "${workspaceFolder}"
+        }
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [],
+      "detail": "Update QA commons"
+    }
+  ]
+}

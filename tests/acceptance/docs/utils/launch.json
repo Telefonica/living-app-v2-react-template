@@ -14,6 +14,9 @@
                 "${file}",
                 "-n",
                 "${selectedText}",
+                "--junit",
+                "--junit-directory",
+                "_output/reports",
                 "-s"
             ],
             "stopOnEntry": false,
@@ -30,14 +33,46 @@
                 "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
             },
             "args": [
-                "${file}"
+                "${file}",
+                "-t",
+                "~@skip",
+                "-t",
+                "~@future",
+                "-t",
+                "~@todo",
+                "-t",
+                "~@no_automatable"
             ],
             "stopOnEntry": false,
             "justMyCode": false,
             "jinja": true
         },
         {
-            "name": "Tags",
+            "name": "Feature without bugs",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "${file}",
+                "-t",
+                "~@bug",
+                "-t",
+                "~@skip",
+                "--junit",
+                "--junit-directory",
+                "_output/reports",
+                "-s"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "jinja": true
+        },
+        {
+            "name": "Feature only tag",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",
@@ -54,14 +89,17 @@
                 "-t",
                 "~@future",
                 "-t",
-                "~@bug",
+                "~@todo",
+                "--junit",
+                "--junit-directory",
+                "_output/reports",
                 "-s"
             ],
             "stopOnEntry": false,
             "justMyCode": false
         },
         {
-            "name": "Folders",
+            "name": "Features folder",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",
@@ -70,20 +108,27 @@
                 "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
             },
             "args": [
-                "${workspaceFolder}/tests/acceptance/features/",
+                "${workspaceFolder}/tests/acceptance/features",
                 "-t",
                 "~@future",
                 "-t",
                 "~@manual",
                 "-t",
                 "~@skip",
+                "-t",
+                "~@no_automatable",
+                "-t",
+                "~@bug",
+                "--junit",
+                "--junit-directory",
+                "_output/reports",
                 "-s"
             ],
             "stopOnEntry": false,
             "justMyCode": false
         },
         {
-            "name": "Python script",
+            "name": "Python: Current File with my args",
             "type": "debugpy",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
@@ -92,20 +137,117 @@
             "cwd": "${workspaceFolder}/tests/acceptance",
             "program": "${file}",
             "args": [
+                "-f",
+                "XXXXXX",
+                "-s",
+                "XXXXXX"
             ],
             "console": "integratedTerminal"
         },
         {
-            "name": "LAQACommons - script",
+            "name": "Scenario (Jira ID)",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}"
+            },
+            "args": [
+                "${file}",
+                "-t",
+                "@jira.${selectedText}"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false,
+            "jinja": true
+        },
+        {
+            "name": "Release - CustomTags",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "behave",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance/"
+            },
+            "args": [
+                "features",
+                "-t",
+                "~@skip",
+                "-t",
+                "~@future",
+                "-t",
+                "~@todo",
+                "-t",
+                "~@no_automatable",
+                "-t",
+                "XXXXXXXXXX",
+                "-s"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "LAQACommons - jira-executions-api",
             "type": "debugpy",
             "request": "launch",
             "cwd": "${workspaceFolder}/tests/acceptance",
             "module": "laqacommons",
             "env": {
-              "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
             },
             "args": [
-              "jira-queries"
+                "jira-executions-api",
+                "--format",
+                "list",
+                "-t",
+                "${env:JIRA_TOKEN}",
+                "-sq",
+                "-q",
+                "project = QALAGLOB AND component = 'XXXXX' AND issuetype = 'Scenario Execution' AND 'Executed Version' = CI AND Build = Release AND labels in (sanity) AND Language in (es)"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "LAQACommons - runners-generator",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "laqacommons",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "runners-generator",
+                "-f",
+                "features/components/details/basketball",
+                "-r",
+                "sanity",
+                "-e",
+                "es-qa",
+                "-jv",
+                "CI",
+                "-ct",
+                "@visual_test,@home,@new_home;@filters"
+            ],
+            "stopOnEntry": false,
+            "justMyCode": false
+        },
+        {
+            "name": "LAQACommons - review duplicated ids",
+            "type": "debugpy",
+            "request": "launch",
+            "cwd": "${workspaceFolder}/tests/acceptance",
+            "module": "laqacommons",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/tests/acceptance"
+            },
+            "args": [
+                "review-duplicated-ids",
+                "-f",
+                "./features/components/XXXXX"
             ],
             "stopOnEntry": false,
             "justMyCode": false

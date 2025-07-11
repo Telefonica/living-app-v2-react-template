@@ -1,24 +1,21 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# Testing and reporting
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/coverage
 
 # Logs
-logs
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-_output*
-_output.tar
-_output.zip
-_output.tar.gz
-_output.rar
 
-# dependencies
-node_modules
+# Dependencies
+node_modules/*
 *.local
 /.pnp
 .pnp.js
@@ -26,7 +23,7 @@ node_modules
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/*
 .DS_Store
 *.suo
 *.ntvs*
@@ -34,27 +31,29 @@ node_modules
 *.sln
 *.sw?
 
-# testing
-/coverage
-
-# production
+# Production
 /build
 /storybook-static
+vite.config.*.timestamp*
 
-# env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-.venv
+# Environments
+.env*
 
-# local conf
-local-*.cfg
+# Local files
+*local*
 
-#local resources
-acceptance/resources/baseline/local*
+# pyc
+__pycache__/
+*.pyc
 
-# automatic runners folders
-settings/runners/**/automatic/*
-**/tools/selenoid/.logs/*
-**/tools/selenoid/.video/*
+# QA
+.venv*
+venv*
+# .qa/ # Uncomment in the future projects
+.history/
+tests/acceptance/error_*.png
+tests/acceptance/_output/
+tests/acceptance/resources/page_objects_definition/temporal/
+tests/acceptance/settings/runners/**/automatic/*
+tests/acceptance/tools/selenoid/.logs/
+tests/acceptance/tools/selenoid/.video/

@@ -6,7 +6,8 @@
       "build_url_pr": "https://globalmakermedia.blob.core.windows.net/web-pocs/PRs/la-generic-{pr_number}/build/index.html",
       "mock_server_url": "http://mock-server:8889",
       "mock_server_new_url": "http://mock-server-new:8091",
-      "config_url": "http://mock-server:8889/ei-config.json"
+      "config_url": "http://mock-server:8889/ei-config.json",
+      "url_local": "http://app:3000/"
     }
   }
 }

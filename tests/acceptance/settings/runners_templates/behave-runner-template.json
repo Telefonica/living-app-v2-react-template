@@ -3,7 +3,6 @@
     "behave_features": {{ features }},
     "behave_tags": [
       {% if "br" in environment %}
-      "~@tv",
       "~@aura",
       "~@vocal_interaction",
       {% endif %}
@@ -14,6 +13,7 @@
       {% endfor %}
       {% endif %}
       "~@skip",
+      "~@todo",
       "~@manual",
       "~@future",
       "~@deprecated",

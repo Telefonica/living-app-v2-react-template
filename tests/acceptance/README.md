@@ -1,5 +1,5 @@
 <p align="right">
-  <img src="https://flat.badgen.net/badge/Python/%203.11/blue"/>
+  <img src="https://flat.badgen.net/badge/Python/%203.11.13/blue"/>
   <img src="https://flat.badgen.net/badge/laqacommons/%203.40.dev0/purple"/>
 </p>
 # Getting Started with QA Living Apps 2.0

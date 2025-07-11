@@ -47,8 +47,8 @@ docker-build: ## Build QA services in Docker
 		--build-arg NEXUS_LA_USER="$(NEXUS_LA_USER)" \
 		--build-arg NEXUS_LA_PASSWORD="$(NEXUS_LA_PASSWORD)"
 
-docker-up: docker-build ## Up Docker services (use MAKE_DOCKER_SERVICES="..." to customize)
-	@docker compose -f "$(MAKE_DOCKER_FILE)" up -d $(MAKE_DOCKER_SERVICES)
+docker-up: ## Up Docker services (use MAKE_DOCKER_SERVICES="..." to customize)
+	@docker compose -f "$(MAKE_DOCKER_FILE)" up -d --build $(MAKE_DOCKER_SERVICES)
 
 docker-run-tests:  ## Run QA tests in Docker
 	@docker compose -f "$(MAKE_DOCKER_FILE)" exec -e USER_TEST="$(USER_TEST)" $(MAKE_DOCKER_PYTHON_SERVICE) bash -c '$(MAKE_RUN_TESTS_PATH)'
